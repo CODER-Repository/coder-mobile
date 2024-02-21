@@ -2,10 +2,18 @@ package com.coder.siakad.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val PrimaryBlue500 = Color(0xFF245399)
+val PrimaryBlue400 = Color(0xFF4C73AC)
+val PrimaryBlue300 = Color(0xFF7492C0)
+val PrimaryBlue200 = Color(0xFF9BB2D3)
+val PrimaryBlue150 = Color(0xFFAFC2DD)
+val PrimaryBlue100 = Color(0xFFC3D1E7)
+val PrimaryBlue50 = Color(0xFFD7E1F0)
+val PrimaryBlue10 = Color(0xFFEBF1FA)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val PrimaryYellow500 = Color(0xFFEDA60E)
+val PrimaryYellow400 = Color(0xFFF1B83E)
+val PrimaryYellow300 = Color(0xFFF4CA6E)
+val PrimaryYellow200 = Color(0xFFF8DB9F)
+val PrimaryYellow100 = Color(0xFFFAE4B7)
+val PrimaryYellow50 = Color(0xFFFDF6E7)
