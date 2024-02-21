@@ -17,3 +17,6 @@ val PrimaryYellow300 = Color(0xFFF4CA6E)
 val PrimaryYellow200 = Color(0xFFF8DB9F)
 val PrimaryYellow100 = Color(0xFFFAE4B7)
 val PrimaryYellow50 = Color(0xFFFDF6E7)
+
+val PrimaryBackground = Color(0xFFF3F3F3)
+val SecondaryBackground = Color(0xFFE3E3E3)
