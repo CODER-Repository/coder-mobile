@@ -11,6 +11,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -66,20 +68,33 @@ fun DashboardScreen() {
             )
         }
     ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .padding(paddingValues)
-                .background(Color(0xFF245399))
-                .padding(16.dp)
-                .fillMaxWidth()
-        ) {
-            Box(
+        Column {
+
+            Column(
                 modifier = Modifier
-                    .size(64.dp)
-                    .border(4.dp, Color.White, CircleShape)
-                    .clip(CircleShape)
-                    .background(Color.LightGray)
-            )
+                    .padding(paddingValues)
+                    .background(Color(0xFF245399))
+                    .padding(16.dp)
+                    .fillMaxWidth()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(64.dp)
+                        .border(4.dp, Color.White, CircleShape)
+                        .clip(CircleShape)
+                        .background(Color.LightGray)
+                )
+
+            }
+            Column {
+                CardDefaults.cardColors()
+                Card {
+                    Text(
+                        text = "test",
+                        modifier = Modifier.padding(24.dp)
+                    )
+                }
+            }
         }
     }
 }
