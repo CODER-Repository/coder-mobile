@@ -23,20 +23,26 @@ private val DarkColorScheme = darkColorScheme(
 
 private val LightColorScheme = lightColorScheme(
     primary = PrimaryBlue500,
-    secondary = PrimaryYellow50,
-    tertiary = PrimaryBlue500,
-    background = PrimaryBackground,
-    surface = PrimaryBackground,
-    surfaceVariant = SecondaryBackground
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
     onPrimary = Color.White,
+    secondary = PrimaryYellow50,
     onSecondary = Color.White,
+    tertiary = PrimaryBlue500,
     onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    background = PrimaryBackground,
+    onBackground = TextPrimary,
+    surface = PrimaryBackground,
+    onSurface = TextPrimary,
+    surfaceVariant = Color.White,
+    onSurfaceVariant = TextPrimary,
+    primaryContainer = ContainerPrimary,
+    onPrimaryContainer = TextPrimary,
+    tertiaryContainer = ContainerPrimary,
+    onTertiaryContainer = TextPrimary,
+    error = Error,
+    onError = OnError,
+    errorContainer = ContainerError,
+    onErrorContainer = OnErrorContainer,
+    outline = Outline
 )
 
 @Composable
