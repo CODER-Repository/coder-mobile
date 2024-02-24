@@ -23,13 +23,14 @@ val SecondaryBackground = Color(0xFFE3E3E3)
 
 val ContainerPrimary = Color.White
 val ContainerError = Color(0xFFFFDADA)
+val ContainerDisable = Color(0xFFF6F6F6)
 val OnErrorContainer = Color(0xFFFF4444)
 val Error = Color(0xFFFF4444)
 val OnError = Color.White
 
 val TextPrimary = Color(0xFF171717)
 val TextSecondary = Color(0xFF666666)
-val TextDisable = Color(0xFF777675)
+val TextDisable = Color(0xFFB7B7B7)
 val PlaceholderPrimary = Color(0xFF666666)
-val PlaceholderSecondary = Color(0xFF393938)
+val PlaceholderTyped = Color(0xFF393938)
 val Outline = Color(0xFFE3E3E3)
