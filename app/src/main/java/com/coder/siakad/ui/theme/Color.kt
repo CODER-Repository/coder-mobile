@@ -17,8 +17,8 @@ val PrimaryYellow300 = Color(0xFFF4CA6E)
 val PrimaryYellow200 = Color(0xFFF8DB9F)
 val PrimaryYellow100 = Color(0xFFFAE4B7)
 val PrimaryYellow50 = Color(0xFFFDF6E7)
-
 val PrimaryBackground = Color(0xFFF3F3F3)
+
 val SecondaryBackground = Color(0xFFE3E3E3)
 
 val ContainerPrimary = Color.White
@@ -33,3 +33,12 @@ val TextDisable = Color(0xFF777675)
 val PlaceholderPrimary = Color(0xFF666666)
 val PlaceholderSecondary = Color(0xFF393938)
 val Outline = Color(0xFFE3E3E3)
+
+val Green500 = Color(0xFF1EB193)
+val Green200 = Color(0xFFCEEBE5)
+
+val Purple500 = Color(0xFFBB50EE)
+val Purple200 = Color(0xFFEDD8F8)
+
+val Red500 = Color(0xFFFF4444)
+val Red200 = Color(0xFFFBD6D6)
