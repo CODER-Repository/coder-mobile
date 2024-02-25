@@ -5,6 +5,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,6 +23,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,6 +48,8 @@ import androidx.compose.ui.unit.dp
 import com.coder.siakad.R
 import com.coder.siakad.ui.theme.ContainerDisable
 import com.coder.siakad.ui.theme.ContainerPrimary
+import com.coder.siakad.ui.theme.Outline
+import com.coder.siakad.ui.theme.OutlineFocused
 import com.coder.siakad.ui.theme.PlaceholderPrimary
 import com.coder.siakad.ui.theme.PrimaryBackground
 import com.coder.siakad.ui.theme.PrimaryBlue500
@@ -57,19 +62,22 @@ import com.coder.siakad.ui.theme.Typography
 fun SiakadInputText(
     modifier: Modifier = Modifier,
     label: String = "",
-    icon: ImageVector,
+    icon: Painter,
     value: String,
     placeholder: String = "",
-    onChange: (String) -> Unit = {},
-    isChange: Boolean = false,
+    onValueChange: (String) -> Unit = {},
+    enable: Boolean = true,
+    readOnly: Boolean = false,
     isObsecure: Boolean? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
-    topPadding: Dp = 5.dp,
-    bottomPadding: Dp = 5.dp
+    minLines: Int = 1,
+    maxLines: Int = 3,
+    supportingText: @Composable (() -> Unit)? = { Text(text = stringResource(id = R.string.required)) },
+    isError: Boolean = false
 ) {
     var isShowPassword by remember { mutableStateOf(false) }
 
-    Column(modifier.padding(top = topPadding, bottom = bottomPadding)) {
+    Column(modifier) {
         if (label != "") {
             Row(
                 modifier = Modifier
@@ -78,46 +86,57 @@ fun SiakadInputText(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    imageVector = icon,
+                    painter = icon,
                     tint = TextPrimary,
                     contentDescription = stringResource(
                         id = R.string.label, label
                     )
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-                Text(text = label, style = Typography.labelSmall)
+                Text(text = label, style = MaterialTheme.typography.labelMedium)
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }
         OutlinedTextField(
             value = value,
-            onValueChange = onChange,
+            onValueChange = onValueChange,
             modifier = Modifier
+                .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp))
-                .fillMaxWidth(),
-//            colors = (if (isChange)ContainerPrimary else ContainerDisable),
-            colors = OutlinedTextFieldDefaults.colors(disabledContainerColor = ContainerDisable  ),
-            enabled = isChange,
+//                .height(48.dp)
+                .align(Alignment.CenterHorizontally),
+            colors =
+            OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = OutlineFocused,
+                unfocusedBorderColor = Outline,
+                focusedLabelColor = OutlineFocused,
+                cursorColor = Outline,
+                unfocusedContainerColor = ContainerPrimary,
+                focusedContainerColor = ContainerPrimary,
+                disabledContainerColor = ContainerDisable,
+                disabledTextColor = TextDisable,
+                focusedTextColor = TextPrimary
+            ),
+            textStyle = MaterialTheme.typography.labelSmall,
+            enabled = enable,
+            readOnly = readOnly,
             shape = RoundedCornerShape(8.dp),
             placeholder = {
                 Text(
-                    text = placeholder, style = if (isChange) {
-                        Typography.labelSmall.merge(TextDisable)
-                    } else {
-                        Typography.labelSmall.merge(PlaceholderPrimary)
-                    }
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxWidth(),
+                    text = placeholder
                 )
-
             },
             trailingIcon = {
                 if (isObsecure != null && isObsecure) {
-                    IconButton(onClick = {
-                        isShowPassword = !isShowPassword
-                    }) {
+                    IconButton(onClick = { isShowPassword = !isShowPassword }) {
                         Icon(
                             painter = painterResource(id = if (!isShowPassword) R.drawable.visible else R.drawable.visible_off),
                             contentDescription = stringResource(id = R.string.is_show_password)
                         )
+
                     }
                 }
             },
@@ -125,15 +144,11 @@ fun SiakadInputText(
                 if (isShowPassword) VisualTransformation.None else PasswordVisualTransformation()
             } else VisualTransformation.None,
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-            singleLine = true,
-            maxLines = 1,
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = PrimaryBlue500,
-                unfocusedBorderColor = PrimaryBlue500,
-                focusedLabelColor = PrimaryBlue500,
-                cursorColor = PrimaryBlue500
+            maxLines = maxLines,
+            minLines = minLines,
+            supportingText = supportingText,
+            isError = isError
             )
-        )
     }
 }
 
@@ -141,11 +156,11 @@ fun SiakadInputText(
 @Composable
 fun SiakadInputTextPreview() {
     SiakadInputText(
-        value = "",
-        onChange = {},
-        label = "Test",
-        isChange = true,
-        isObsecure = true,
-        icon = Icons.Default.Preview
+        value = "test",
+        onValueChange = {},
+        label = "Oke",
+        enable = true,
+        isObsecure = false,
+        icon = painterResource(id = R.drawable.ic_academic_data)
     )
 }
