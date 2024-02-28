@@ -27,8 +27,8 @@ fun DashboardInfo(
     title: String,
     icon: ImageVector,
     value: String,
+    modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.primary,
-    modifier: Modifier,
 ) {
     Row(
         modifier = modifier
