@@ -14,14 +14,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.InsertDriveFile
 import androidx.compose.material.icons.filled.FormatListNumbered
 import androidx.compose.material.icons.filled.MoreHoriz
 import androidx.compose.material.icons.filled.Payments
+import androidx.compose.material.icons.outlined.FormatListNumbered
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.School
+import androidx.compose.material.icons.rounded.CalendarMonth
+import androidx.compose.material.icons.rounded.EditCalendar
+import androidx.compose.material.icons.rounded.FileCopy
+import androidx.compose.material.icons.rounded.RequestQuote
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,6 +49,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.coder.siakad.presentation.component.TopBarIconButton
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardInfo
+import com.coder.siakad.presentation.screen.dashboard.component.DashboardMenu
+import com.coder.siakad.presentation.screen.dashboard.component.DashboardMenuButton
+import com.coder.siakad.ui.theme.PrimaryBlue500
+import com.coder.siakad.ui.theme.PrimaryYellow500
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -139,6 +152,7 @@ fun DashboardScreen() {
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
+            // Dashboard Info
             OutlinedCard {
                 Column(
                     modifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp),
@@ -199,6 +213,57 @@ fun DashboardScreen() {
                             )
                         }
                     }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Menus
+            val menus = listOf(
+                DashboardMenu(
+                    title = "Jadwal",
+                    icon = Icons.Rounded.CalendarMonth,
+                    color = Color(0xFFBB50EE),
+                    route = "",
+                ),
+                DashboardMenu(
+                    title = "Presensi",
+                    icon = Icons.Rounded.EditCalendar,
+                    color = Color(0xFF1EB193),
+                    route = "",
+                ),
+                DashboardMenu(
+                    title = "Nilai",
+                    icon = Icons.Rounded.FileCopy,
+                    color = PrimaryYellow500,
+                    route = "",
+                ),
+                DashboardMenu(
+                    title = "Biaya Akademik",
+                    icon = Icons.Rounded.RequestQuote,
+                    color = PrimaryYellow500,
+                    route = "",
+                ),
+                DashboardMenu(
+                    title = "Kuisioner",
+                    icon = Icons.Outlined.FormatListNumbered,
+                    color = PrimaryBlue500,
+                    route = "",
+                ),
+            )
+
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(3),
+                userScrollEnabled = false,
+                verticalArrangement = Arrangement.spacedBy(24.dp)
+            ) {
+                items(menus) { menu ->
+                    DashboardMenuButton(
+                        title = menu.title,
+                        icon = menu.icon,
+                        color = menu.color,
+                        onClick = {},
+                    )
                 }
             }
         }
