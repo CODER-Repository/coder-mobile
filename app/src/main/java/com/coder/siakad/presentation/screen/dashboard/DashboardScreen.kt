@@ -7,21 +7,27 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.InsertDriveFile
+import androidx.compose.material.icons.filled.FormatListNumbered
 import androidx.compose.material.icons.filled.MoreHoriz
+import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.School
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -34,6 +40,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.coder.siakad.presentation.component.TopBarIconButton
+import com.coder.siakad.presentation.screen.dashboard.component.DashboardInfo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -132,13 +139,66 @@ fun DashboardScreen() {
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
-            Column {
-                CardDefaults.cardColors()
-                Card {
-                    Text(
-                        text = "test",
-                        modifier = Modifier.padding(24.dp)
-                    )
+            OutlinedCard {
+                Column(
+                    modifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    OutlinedCard(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Row(Modifier.height(IntrinsicSize.Min)) {
+                            DashboardInfo(
+                                title = "IPK Kumulatif",
+                                icon = Icons.AutoMirrored.Outlined.InsertDriveFile,
+                                value = "3.90",
+                                color = Color(0xFF1EB193),
+                                modifier = Modifier.weight(1f)
+                            )
+                            Spacer(
+                                modifier = Modifier
+                                    .width(1.dp)
+                                    .fillMaxHeight()
+                                    .padding(vertical = 12.dp)
+                                    .background(MaterialTheme.colorScheme.outline)
+                            )
+                            DashboardInfo(
+                                title = "Total SKS Diambil",
+                                icon = Icons.Default.FormatListNumbered,
+                                value = "24",
+                                color = Color(0xFFEDA60E),
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                    }
+                    OutlinedCard(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Row(Modifier.height(IntrinsicSize.Min)) {
+                            DashboardInfo(
+                                title = "Semester",
+                                icon = Icons.Outlined.School,
+                                value = "2",
+                                modifier = Modifier.weight(1f)
+                            )
+                            Spacer(
+                                modifier = Modifier
+                                    .width(1.dp)
+                                    .fillMaxHeight()
+                                    .padding(vertical = 12.dp)
+                                    .background(MaterialTheme.colorScheme.outline)
+                            )
+                            DashboardInfo(
+                                title = "Tagihan Terkini",
+                                icon = Icons.Default.Payments,
+                                color = MaterialTheme.colorScheme.error,
+                                value = "Rp.8.500.000",
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                    }
                 }
             }
         }
