@@ -47,6 +47,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.coder.siakad.presentation.component.NavBar
 import com.coder.siakad.presentation.component.TopBarIconButton
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardInfo
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardMenu
@@ -145,7 +146,8 @@ fun DashboardScreen() {
                     }
                 }
             }
-        }
+        },
+        bottomBar = { NavBar() }
     ) { paddingValues ->
         Column(
             modifier = Modifier
