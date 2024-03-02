@@ -7,10 +7,13 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Rule
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -34,13 +37,14 @@ fun ProfileScreen(
 //    val nim
     Scaffold(
         topBar = {
-            Row(modifier = modifier) {
-                TopBar(title = title, navigateBack = navigateBack, modifier = modifier)
-                Icon(
-                    imageVector = Icons.AutoMirrored.Default.Rule,
-                    contentDescription = stringResource(id = R.string.edit_profile)
-                )
-            }
+            TopBar(title = title, navigateBack = navigateBack, modifier = modifier, actions = {
+                IconButton(onClick = { }) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Default.Rule,
+                        contentDescription = stringResource(id = R.string.edit_profile)
+                    )
+                }
+            })
         },
     ) { paddingValues ->
         Surface(
@@ -49,6 +53,7 @@ fun ProfileScreen(
         ) {
             Column(
                 modifier = Modifier
+                    .verticalScroll(rememberScrollState())
                     .padding(paddingValues)
                     .fillMaxWidth()
                     .fillMaxHeight(),
@@ -73,7 +78,7 @@ fun ProfileScreen(
                     classType = "",
                     nim = "",
 
-                )
+                    )
 
             }
         }
