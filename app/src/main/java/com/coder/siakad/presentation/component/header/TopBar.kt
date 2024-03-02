@@ -10,10 +10,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.coder.siakad.R
+import com.coder.siakad.ui.theme.ContainerPrimary
 import com.coder.siakad.ui.theme.PrimaryBlue10
 import com.coder.siakad.ui.theme.PrimaryBlue500
 import com.coder.siakad.ui.theme.Typography
@@ -27,7 +29,6 @@ fun TopBar(
 //    actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(
-        modifier = modifier.background(PrimaryBlue500),
         title = {
             Text(text = title, style = Typography.headlineLarge)
         },
@@ -39,9 +40,16 @@ fun TopBar(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = stringResource(id = R.string.navigate_back)
+                    contentDescription = stringResource(id = R.string.navigate_back),
+                    tint = ContainerPrimary
                 )
             }
-        }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = PrimaryBlue500)
     )
+}
+
+@Composable
+fun TopBarPreview() {
+
 }
