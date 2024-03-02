@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.coder.siakad.presentation.screen.dashboard.DashboardScreen
 import com.coder.siakad.presentation.screen.profile.ProfileScreen
+import com.coder.siakad.presentation.screen.schedule.ScheduleScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -14,6 +15,7 @@ fun SiakadApp() {
     // if you wanted to test your screen in emulator
 
     // ex :
-//    DashboardScreen()
-    ProfileScreen(title = "Profile", navigateBack = {}, modifier = Modifier)
+   DashboardScreen()
+//     ProfileScreen(title = "Profile", navigateBack = {}, modifier = Modifier)
+//     ScheduleScreen()
 }
