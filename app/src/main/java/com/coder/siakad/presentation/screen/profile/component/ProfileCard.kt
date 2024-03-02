@@ -11,21 +11,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.HomeWork
-import androidx.compose.material.icons.filled.Key
-import androidx.compose.material.icons.filled.LocationCity
-import androidx.compose.material.icons.filled.Password
-import androidx.compose.material.icons.filled.PermIdentity
-import androidx.compose.material.icons.filled.Phone
-import androidx.compose.material.icons.filled.Preview
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -34,17 +23,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.coder.siakad.R
 import com.coder.siakad.presentation.component.input.SiakadInputText
-import com.coder.siakad.ui.theme.ContainerPrimary
-import com.coder.siakad.ui.theme.Outline
-import com.coder.siakad.ui.theme.PrimaryBackground
+import com.coder.siakad.ui.theme.Green500
 import com.coder.siakad.ui.theme.PrimaryBlue150
 import com.coder.siakad.ui.theme.PrimaryBlue500
 
@@ -67,8 +52,8 @@ fun ProfileCard(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(),
-        colors = CardDefaults.cardColors(containerColor = ContainerPrimary),
-        border = BorderStroke(width = 2.dp, color = Outline)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+        border = BorderStroke(width = 2.dp, color = MaterialTheme.colorScheme.outline)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             //PERSONAL DATA
@@ -80,12 +65,12 @@ fun ProfileCard(
                     Text(
                         text = stringResource(id = R.string.personal_data),
                         style = MaterialTheme.typography.labelLarge,
-                        color = Color.Green
+                        color = Green500
                     )
                     Spacer(modifier = modifier.width(10.dp))
                     Box(
                         modifier
-                            .background(shape = CircleShape, color = Color.Green)
+                            .background(shape = CircleShape, color = Green500.copy(alpha = 0.2f))
                             .size(30.dp),
                         contentAlignment = Alignment.Center
                     ) {

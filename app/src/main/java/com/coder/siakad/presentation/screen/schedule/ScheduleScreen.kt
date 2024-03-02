@@ -1,22 +1,18 @@
 package com.coder.siakad.presentation.screen.schedule
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.coder.siakad.R
+import com.coder.siakad.presentation.component.header.TopBar
 import com.coder.siakad.presentation.screen.schedule.components.DayItem
 import com.coder.siakad.presentation.screen.schedule.utils.ScheduleColor
 import com.coder.siakad.ui.theme.SiakadTheme
@@ -27,22 +23,9 @@ import com.coder.siakad.ui.theme.SiakadTheme
 fun ScheduleScreen() {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Jadwal",
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            fontWeight = FontWeight.Bold
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(end = 16.dp)
-                    )
-                },
-                colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary),
-                navigationIcon = {})
+            TopBar(
+                title = stringResource(id = R.string.schedule)
+            )
         }
     ) { paddingValues ->
         ScheduleContent(dummySchedules, modifier = Modifier.padding(paddingValues))

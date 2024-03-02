@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,36 +23,35 @@ import coil.compose.AsyncImage
 import com.coder.siakad.R
 import com.coder.siakad.ui.theme.PrimaryBlue500
 import com.coder.siakad.ui.theme.TextDisable
-import com.coder.siakad.ui.theme.Typography
 
 @Composable
 fun ProfileHeader(
     modifier: Modifier = Modifier,
     username: String,
-    iconUrl: String,
+    imageUrl: String,
     nim: String,
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(15.dp),
+            .padding(16.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         AsyncImage(
             modifier = modifier
                 .clip(CircleShape)
-                .size(75.dp)
+                .size(76.dp)
                 .background(PrimaryBlue500),
-            model = iconUrl,
+            model = imageUrl,
             contentDescription = stringResource(id = R.string.img_profile),
             contentScale = ContentScale.Crop,
         )
-        Spacer(modifier = modifier.height(5.dp))
+        Spacer(modifier = modifier.height(8.dp))
         Text(
             modifier = modifier,
             text = username,
-            style = Typography.labelLarge.merge(
+            style = MaterialTheme.typography.labelLarge.merge(
                 PrimaryBlue500,
                 fontWeight = FontWeight.SemiBold
             ),
@@ -59,7 +59,7 @@ fun ProfileHeader(
         Text(
             text = nim,
             modifier = modifier,
-            style = Typography.labelSmall.merge(TextDisable)
+            style = MaterialTheme.typography.labelSmall.merge(TextDisable)
         )
     }
 }

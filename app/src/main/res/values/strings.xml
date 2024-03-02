@@ -25,5 +25,6 @@
     <string name="class_type">Class Type</string>
     <!--Edit-->
     <string name="required">Required</string>
+    <string name="schedule">Schedule</string>
 
 </resources>

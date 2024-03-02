@@ -1,58 +1,51 @@
 package com.coder.siakad.presentation.component.header
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import com.coder.siakad.R
-import com.coder.siakad.ui.theme.ContainerPrimary
-import com.coder.siakad.ui.theme.PrimaryBlue10
-import com.coder.siakad.ui.theme.PrimaryBlue500
-import com.coder.siakad.ui.theme.Typography
 
 @ExperimentalMaterial3Api
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
-//    navigationIcon: @Composable () -> Unit = {},
-    navigateBack: () -> Unit,
+    backButton: Boolean = false,
+    navigateBack: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {}
 ) {
-    TopAppBar(
+    CenterAlignedTopAppBar(
         title = {
-            Text(text = title, style = Typography.headlineLarge)
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold),
+                color = MaterialTheme.colorScheme.onPrimary,
+
+                )
         },
         navigationIcon = {
-            IconButton(
-                onClick = {
-                    navigateBack
-                },
+            if (backButton) TopBarIconButton(
+                onClick = navigateBack,
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(id = R.string.navigate_back),
-                    tint = ContainerPrimary
                 )
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = PrimaryBlue500),
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
         actions = actions,
         modifier = modifier
     )
 }
 
-@Composable
-fun TopBarPreview() {
-
-}

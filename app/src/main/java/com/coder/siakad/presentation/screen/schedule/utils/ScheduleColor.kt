@@ -26,7 +26,9 @@ enum class ScheduleColor(val colorPrimary: Color, val colorOnPrimary: Color) {
             2 -> GREEN
             3-> PURPLE
             4 -> RED
-            else -> BLUE
+            5 -> BLUE
+            6 -> YELLOW
+            else -> GREEN
         }
     }
 }
