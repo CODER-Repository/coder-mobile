@@ -25,8 +25,9 @@ import com.coder.siakad.ui.theme.Typography
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
+//    navigationIcon: @Composable () -> Unit = {},
     navigateBack: () -> Unit,
-//    actions: @Composable RowScope.() -> Unit = {}
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(
         title = {
@@ -45,7 +46,9 @@ fun TopBar(
                 )
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = PrimaryBlue500)
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = PrimaryBlue500),
+        actions = actions,
+        modifier = modifier
     )
 }
 
