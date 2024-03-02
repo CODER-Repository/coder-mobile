@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Siakad</string>
+    <string name="navigate_back">Navigate Back</string>
+    <string name="title">In %1$s</string>
+    <string name="label">%1$s</string>
+
+    <string name="is_show_password">Toggle Password Visibility</string>
+    <!--PROFILE-->
+    <!--Personal Data-->
+    <string name="personal_data">Personal Data</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="img_profile">Profile Image</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="birthplace">Birthplace</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="address">Address</string>
+    <string name="password">Password</string>
+    <!--Academic Data-->
+    <string name="academic_data">Academic data</string>
+    <string name="nim">NIM</string>
+    <string name="study_program">Study Program</string>
+    <string name="entry_year">Entry Year</string>
+    <string name="class_type">Class Type</string>
+    <!--Edit-->
+    <string name="required">Required</string>
+
 </resources>
