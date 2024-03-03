@@ -1,11 +1,10 @@
 package com.coder.siakad.presentation.component.input
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
@@ -22,9 +21,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -41,7 +41,7 @@ import com.coder.siakad.ui.theme.TextPrimary
 fun SiakadInputText(
     modifier: Modifier = Modifier,
     label: String = "",
-    icon: Painter,
+    icon: ImageVector? = null,
     value: String,
     placeholder: String = "",
     onValueChange: (String) -> Unit = {},
@@ -52,7 +52,7 @@ fun SiakadInputText(
     minLines: Int = 1,
     maxLines: Int = 3,
     supportingText: @Composable (() -> Unit)? = { Text(text = stringResource(id = R.string.required)) },
-    isError: Boolean = false
+    isError: Boolean = false,
 ) {
     var isShowPassword by remember { mutableStateOf(false) }
 
@@ -62,16 +62,18 @@ fun SiakadInputText(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 6.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Icon(
-                    painter = icon,
-                    tint = TextPrimary,
-                    contentDescription = stringResource(
-                        id = R.string.label, label
+                icon?.let {
+                    Icon(
+                        imageVector = icon,
+                        tint = TextPrimary,
+                        contentDescription = stringResource(
+                            id = R.string.label, label
+                        )
                     )
-                )
-                Spacer(modifier = Modifier.width(8.dp))
+                }
                 Text(text = label, style = MaterialTheme.typography.labelMedium)
             }
         }
@@ -122,7 +124,7 @@ fun SiakadInputText(
             minLines = minLines,
             supportingText = supportingText,
             isError = isError
-            )
+        )
     }
 }
 
@@ -136,7 +138,7 @@ fun SiakadInputTextPreview() {
             label = "Oke",
             enable = true,
             isObsecure = false,
-            icon = painterResource(id = R.drawable.ic_academic_data)
+            icon = ImageVector.vectorResource(id = R.drawable.ic_academic_data)
         )
     }
 }
