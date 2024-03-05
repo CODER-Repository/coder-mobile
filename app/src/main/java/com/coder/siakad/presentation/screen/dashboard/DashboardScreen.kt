@@ -41,7 +41,6 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -59,11 +58,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.coder.siakad.presentation.component.header.TopBarIconButton
 import com.coder.siakad.presentation.component.NavBar
-import com.coder.siakad.presentation.screen.dashboard.component.DashboardInfo
+import com.coder.siakad.presentation.component.header.TopBarIconButton
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardMenu
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardMenuButton
+import com.coder.siakad.presentation.screen.dashboard.component.InformationCard
+import com.coder.siakad.presentation.screen.dashboard.component.InformationCardData
+import com.coder.siakad.ui.theme.Green500
 import com.coder.siakad.ui.theme.PrimaryBlue500
 import com.coder.siakad.ui.theme.PrimaryYellow500
 
@@ -183,11 +184,11 @@ fun DashboardScreen() {
                     }
                 )
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    // TODO: Change this box to AsyncImage
                     Row(
                         modifier = Modifier.height(IntrinsicSize.Min),
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
+                        // TODO: Change this box to AsyncImage
                         Box(
                             modifier = Modifier
                                 .size(72.dp)
@@ -239,68 +240,36 @@ fun DashboardScreen() {
                 .padding(16.dp)
         ) {
             // Dashboard Info
-            OutlinedCard {
-                Column(
-                    modifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    OutlinedCard(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        Row(Modifier.height(IntrinsicSize.Min)) {
-                            DashboardInfo(
-                                title = "IPK Kumulatif",
-                                icon = Icons.AutoMirrored.Outlined.InsertDriveFile,
-                                value = "3.90",
-                                color = Color(0xFF1EB193),
-                                modifier = Modifier.weight(1f)
-                            )
-                            Spacer(
-                                modifier = Modifier
-                                    .width(1.dp)
-                                    .fillMaxHeight()
-                                    .padding(vertical = 12.dp)
-                                    .background(MaterialTheme.colorScheme.outline)
-                            )
-                            DashboardInfo(
-                                title = "Total SKS Diambil",
-                                icon = Icons.Default.FormatListNumbered,
-                                value = "24",
-                                color = Color(0xFFEDA60E),
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
-                    }
-                    OutlinedCard(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        Row(Modifier.height(IntrinsicSize.Min)) {
-                            DashboardInfo(
-                                title = "Semester",
-                                icon = Icons.Outlined.School,
-                                value = "2",
-                                modifier = Modifier.weight(1f)
-                            )
-                            Spacer(
-                                modifier = Modifier
-                                    .width(1.dp)
-                                    .fillMaxHeight()
-                                    .padding(vertical = 12.dp)
-                                    .background(MaterialTheme.colorScheme.outline)
-                            )
-                            DashboardInfo(
-                                title = "Tagihan Terkini",
-                                icon = Icons.Default.Payments,
-                                color = MaterialTheme.colorScheme.error,
-                                value = "Rp.8.500.000",
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
-                    }
-                }
-            }
+            InformationCard(
+                infoItemTopLeft =
+                InformationCardData(
+                    title = "IPK Kumulatif",
+                    icon = Icons.AutoMirrored.Outlined.InsertDriveFile,
+                    value = "3.90",
+                    color = Green500,
+                ),
+                infoItemTopRight =
+                InformationCardData(
+                    title = "Total SKS Diambil",
+                    icon = Icons.Default.FormatListNumbered,
+                    value = "24",
+                    color = PrimaryYellow500,
+                ),
+                infoItemBottomLeft =
+                InformationCardData(
+                    title = "Semester",
+                    icon = Icons.Outlined.School,
+                    value = "2",
+                    color = MaterialTheme.colorScheme.primary
+                ),
+                infoItemBottomRight =
+                InformationCardData(
+                    title = "Tagihan Terkini",
+                    icon = Icons.Default.Payments,
+                    color = MaterialTheme.colorScheme.error,
+                    value = "Rp.8.500.000",
+                )
+            )
 
             Spacer(modifier = Modifier.height(24.dp))
 
