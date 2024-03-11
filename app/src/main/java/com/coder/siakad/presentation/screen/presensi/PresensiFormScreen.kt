@@ -18,12 +18,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.coder.siakad.R
+import com.coder.siakad.presentation.component.MultipleChoice
 import com.coder.siakad.presentation.component.header.TopBar
 import com.coder.siakad.presentation.component.input.SiakadInputText
 import com.coder.siakad.ui.theme.SiakadTheme
@@ -38,6 +43,11 @@ fun PresensiFormScreen(
     countOfMeeting: Int = 7
 ) {
     val bottomPadding = 15.dp
+    var selectedOption by remember { mutableStateOf(options[0]) }
+    var selectedQualityCourse by remember {
+        mutableStateOf(optionsQualityCourse[0])
+    }
+
     Scaffold(
         topBar = {
             TopBar(
@@ -68,8 +78,16 @@ fun PresensiFormScreen(
                         style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold)
                     )
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Text(text = labelSchedule, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium), color = TextDisable)
-                        Text(text = "|", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold), color = TextDisable)
+                        Text(
+                            text = labelSchedule,
+                            style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
+                            color = TextDisable
+                        )
+                        Text(
+                            text = "|",
+                            style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+                            color = TextDisable
+                        )
                         Text(
                             text = stringResource(id = R.string.count_of_meeting, countOfMeeting),
                             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
@@ -90,6 +108,10 @@ fun PresensiFormScreen(
                     enable = false,
                     supportingText = null
                 )
+                MultipleChoice(options = options , selectedOption = "offline"){
+                    newSelectedOption ->
+                    selectedOption = newSelectedOption
+                }
                 SiakadInputText(
                     value = "Variable & Tipe data",
                     label = stringResource(id = R.string.meeting_topic),
@@ -115,6 +137,11 @@ fun PresensiFormScreen(
                     maxLines = 7,
                     placeholder = "\n\n\n\n"
                 )
+                Text(text = "How quality of the course today's")
+                MultipleChoice(options = optionsQualityCourse , selectedOption = "Baik sekali"){
+                    newSelectedOption ->
+                    selectedQualityCourse = newSelectedOption
+                }
                 SiakadInputText(
                     value = "",
                     label = stringResource(id = R.string.criticism_suggestions),
@@ -128,6 +155,11 @@ fun PresensiFormScreen(
         }
     }
 }
+
+//Data Dummy
+val options = listOf("Luring [Offline]", "Daring [Online]")
+val optionsQualityCourse = listOf("Baik sekali", "Baik", "Kurang", "Kurang sekali")
+
 
 @ExperimentalMaterial3Api
 @Preview

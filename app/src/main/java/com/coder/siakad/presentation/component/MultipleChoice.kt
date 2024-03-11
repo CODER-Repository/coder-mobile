@@ -1,4 +1,4 @@
-package com.coder.siakad.presentation.screen.presensi
+package com.coder.siakad.presentation.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,26 +22,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun MultipleChoice(value: List<String>) {
-    val option = value
-    var isSelected by remember { mutableStateOf(option[0]) }
-
+fun MultipleChoice(
+    options: List<String>,
+    selectedOption: String,
+    onOptionSelected: (String) -> Unit,
+) {
     Column {
-        option.forEach { option ->
+        options.forEach { option ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp)
                     .selectable(
-                        selected = isSelected == option,
-                        onClick = { isSelected = option }
+                        selected = selectedOption == option,
+                        onClick = { onOptionSelected(option) }
                     )
                     .padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
-                    selected = isSelected == option,
-                    onClick = { isSelected = option },
+                    selected = selectedOption == option,
+                    onClick = { onOptionSelected(option)},
                     colors = RadioButtonDefaults.colors(
                         unselectedColor = Color.Gray,
                         selectedColor = Color.Blue,
@@ -61,8 +62,9 @@ fun MultipleChoice(value: List<String>) {
 
 @Preview
 @Composable
-fun MultipleChoicePreview(){
+fun MultipleChoicePreview() {
     MultipleChoice(
-        listOf("Luring [Offline]", "Daring [Online]")
-    )
+        options = listOf("Luring [Offline]", "Daring [Online]"),
+        selectedOption = "Luring [Offline]"
+    ){}
 }
