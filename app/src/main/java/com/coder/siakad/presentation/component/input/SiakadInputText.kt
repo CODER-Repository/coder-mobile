@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -53,6 +55,7 @@ fun SiakadInputText(
     maxLines: Int = 3,
     supportingText: @Composable (() -> Unit)? = { Text(text = stringResource(id = R.string.required)) },
     isError: Boolean = false,
+    required: Boolean = false,
 ) {
     var isShowPassword by remember { mutableStateOf(false) }
 
@@ -75,6 +78,9 @@ fun SiakadInputText(
                     )
                 }
                 Text(text = label, style = MaterialTheme.typography.labelMedium)
+                if (required){
+                    Text(text = "*", color = Color.Red)
+                }
             }
         }
         OutlinedTextField(
@@ -131,14 +137,18 @@ fun SiakadInputText(
 @Preview(showBackground = true)
 @Composable
 fun SiakadInputTextPreview() {
+    var text by remember {
+        mutableStateOf("")
+    }
     SiakadTheme {
         SiakadInputText(
-            value = "test",
-            onValueChange = {},
+            value = text,
+            onValueChange = {text = it},
             label = "Oke",
             enable = true,
             isObsecure = false,
-            icon = ImageVector.vectorResource(id = R.drawable.ic_academic_data)
+            icon = ImageVector.vectorResource(id = R.drawable.ic_academic_data),
+            maxLines = 1
         )
     }
 }
