@@ -3,7 +3,6 @@ package com.coder.siakad.presentation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.coder.siakad.presentation.screen.attendance.AttendanceScreen
 import com.coder.siakad.presentation.screen.profile.ProfileScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -16,5 +15,4 @@ fun SiakadApp() {
 //   DashboardScreen()
 //    ProfileScreen(title = "Profile", navigateBack = {}, modifier = Modifier)
 //     ScheduleScreen()
-    AttendanceScreen()
 }
