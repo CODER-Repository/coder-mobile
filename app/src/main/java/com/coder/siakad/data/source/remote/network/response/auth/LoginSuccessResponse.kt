@@ -1,4 +1,4 @@
-package com.coder.siakad.data.network.response.auth
+package com.coder.siakad.data.source.remote.network.response.auth
 
 import com.google.gson.annotations.SerializedName
 
