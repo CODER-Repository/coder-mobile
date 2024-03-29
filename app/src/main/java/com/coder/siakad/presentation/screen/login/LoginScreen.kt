@@ -50,7 +50,7 @@ import com.coder.siakad.R
 
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(onLogin: () -> Unit) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -194,7 +194,7 @@ fun LoginScreen() {
             }
 
             Button(
-                onClick = {  },
+                onClick = onLogin,
                 modifier = Modifier
                     .padding(top = 8.dp)
             ) {
@@ -259,5 +259,5 @@ fun LoginScreen() {
 @Preview
 @Composable
 fun DefaultPreviewOfLoginScreen() {
-    LoginScreen()
+    LoginScreen(onLogin = {})
 }

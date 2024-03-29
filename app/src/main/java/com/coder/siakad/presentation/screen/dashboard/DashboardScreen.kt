@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
@@ -70,7 +71,7 @@ import com.coder.siakad.ui.theme.PrimaryYellow500
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardScreen() {
+fun DashboardScreen(onLogout: () -> Unit, menuButtonHandler: List<()->Unit>) {
 
     var dropdownExpanded by remember { mutableStateOf(false) }
 
@@ -151,7 +152,7 @@ fun DashboardScreen() {
                                 }
                                 Divider()
                                 Card(
-                                    modifier = Modifier.clickable { },
+                                    modifier = Modifier.clickable { onLogout() },
                                     colors = CardDefaults.cardColors(
                                         containerColor = MaterialTheme.colorScheme.errorContainer,
                                         contentColor = MaterialTheme.colorScheme.error,
@@ -343,12 +344,12 @@ fun DashboardScreen() {
                 userScrollEnabled = false,
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                items(menus) { menu ->
+                itemsIndexed(menus) { index, menu ->
                     DashboardMenuButton(
                         title = menu.title,
                         icon = menu.icon,
                         color = menu.color,
-                        onClick = {},
+                        onClick = menuButtonHandler[index],
                     )
                 }
             }
