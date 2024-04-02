@@ -1,6 +1,8 @@
 package com.coder.siakad.data.source.remote.network.response.auth
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class LoginSuccessResponse(
 

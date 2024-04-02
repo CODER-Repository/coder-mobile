@@ -19,7 +19,9 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.automirrored.outlined.InsertDriveFile
@@ -238,7 +240,7 @@ fun DashboardScreen(onLogout: () -> Unit, menuButtonHandler: List<()->Unit>) {
             modifier = Modifier
                 .padding(paddingValues)
                 .padding(16.dp)
-        ) {
+            ) {
             // Dashboard Info
             OutlinedCard {
                 Column(

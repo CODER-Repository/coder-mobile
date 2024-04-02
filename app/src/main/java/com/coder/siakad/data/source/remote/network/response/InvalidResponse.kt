@@ -1,7 +1,10 @@
 package com.coder.siakad.data.source.remote.network.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class InvalidResponse(
 
 	@field:SerializedName("message")
@@ -18,8 +21,8 @@ data class InvalidResponse(
 
 	@field:SerializedName("status")
 	val status: Boolean? = null
-)
-
+): Parcelable
+@Parcelize
 data class ErrorsItem(
 
 	@field:SerializedName("msg")
@@ -27,4 +30,4 @@ data class ErrorsItem(
 
 	@field:SerializedName("path")
 	val path: String? = null
-)
+): Parcelable
