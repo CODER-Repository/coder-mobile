@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.coder.siakad.presentation.screen.krs.component.KrsInfo
+import com.coder.siakad.presentation.screen.krs.component.ToggleButton
 import com.coder.siakad.ui.theme.SiakadTheme
 
 @Composable
@@ -104,6 +105,10 @@ fun KrsScreen() {
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        ToggleButton()
     }
 }
 
