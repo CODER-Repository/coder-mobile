@@ -1,4 +1,4 @@
-package com.coder.siakad.presentation.screen.dashboard.component
+package com.coder.siakad.presentation.screen.krs.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AssignmentInd
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,16 +21,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.coder.siakad.R
 import com.coder.siakad.ui.theme.SiakadTheme
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import com.coder.siakad.ui.theme.TextSecondary
 
 @Composable
-fun DashboardInfo(
+fun KrsInfo(
     title: String,
     icon: ImageVector,
     value: String,
@@ -46,7 +48,7 @@ fun DashboardInfo(
                 .size(32.dp),
             contentAlignment = Alignment.Center
         ) {
-            Icon(
+            Icon (
                 imageVector = icon,
                 contentDescription = null,
                 tint = color,
@@ -77,13 +79,13 @@ fun DashboardInfo(
 
 @Preview
 @Composable
-fun DashboardInfoPreview() {
+fun KrsInfoPreview() {
     SiakadTheme {
         Surface(color = Color.White) {
-            DashboardInfo(
-                title = "Total Students",
-                icon = ImageVector.vectorResource(id = R.drawable.ic_academic_data),
-                value = "1000"
+            KrsInfo(
+                title = "Nama",
+                icon = Icons.Default.AssignmentInd,
+                value = "Fillah Amanda S"
             )
         }
     }

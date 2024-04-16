@@ -97,6 +97,8 @@ dependencies {
 
     // Coil - Image Loading
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    implementation("androidx.compose.ui:ui-tooling-preview")
 }
 
 kapt {

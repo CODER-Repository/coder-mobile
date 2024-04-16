@@ -2,16 +2,13 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="PresensiScreenPreview">
+      <entry key="DashboardInfoPreview">
         <State />
       </entry>
-      <entry key="ProfileHeaderPreview">
+      <entry key="KrsInfoPreview">
         <State />
       </entry>
       <entry key="ProfileScreenPreview">
-        <State />
-      </entry>
-      <entry key="TestPreview">
         <State />
       </entry>
       <entry key="app">
