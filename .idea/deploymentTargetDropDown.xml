@@ -5,7 +5,13 @@
       <entry key="DashboardInfoPreview">
         <State />
       </entry>
+      <entry key="HeaderKrsPreview">
+        <State />
+      </entry>
       <entry key="KrsInfoPreview">
+        <State />
+      </entry>
+      <entry key="KrsNotificationPrev">
         <State />
       </entry>
       <entry key="ProfileScreenPreview">

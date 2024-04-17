@@ -52,7 +52,6 @@ fun PresensiFormScreen(
         topBar = {
             TopBar(
                 title = stringResource(id = R.string.form_presensi)
-
             )
         }
     ) { paddingValues ->
