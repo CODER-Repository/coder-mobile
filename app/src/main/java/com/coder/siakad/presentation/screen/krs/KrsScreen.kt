@@ -176,7 +176,7 @@ fun KrsScreen(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                ToggleButton()
+                ToggleButton{}
             }
         }
     }
