@@ -21,7 +21,6 @@ import com.coder.siakad.presentation.screen.schedule.ScheduleScreen
 @Composable
 fun SiakadApp(
     navController: NavHostController = rememberNavController(),
-    viewModel: LoginViewModel = hiltViewModel()
 ) {
     // For this week, because we haven't install Navigation, just put your Screen in this
     // if you wanted to test your screen in emulator
@@ -31,7 +30,6 @@ fun SiakadApp(
 //    ProfileScreen(title = "Profile", navigateBack = {}, modifier = Modifier)
 //     ScheduleScreen()
 
-    //and comment the code below to test your screen
     Scaffold { contentPadding ->
         NavHost(
             navController = navController,
@@ -39,7 +37,16 @@ fun SiakadApp(
             modifier = Modifier.padding(contentPadding)
         ) {
             composable(Screen.Login.route) {
-                LoginScreen(navigateToDashboard = { navController.navigate(Screen.Dashboard.route) })
+//                val loginViewModel: LoginViewModel = hiltViewModel()
+                LoginScreen(navigateToDashboard = {
+                    navController.navigate(Screen.Dashboard.route){
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
+                        restoreState = true
+                        launchSingleTop = true
+                    }
+                })
             }
             composable(Screen.Dashboard.route) {
                 DashboardScreen(

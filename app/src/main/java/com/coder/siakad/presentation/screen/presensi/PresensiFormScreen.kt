@@ -154,10 +154,8 @@ fun PresensiFormScreen(
                     placeholder = "\n\n\n\n"
                 )
                 CustomButton(
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary
-                    ),
+//                    isOutline = false,
+//                    isNotWide = true,
                     text = {
                         Text(text = "Selengkapnya", style = MaterialTheme.typography.labelMedium)
                     },

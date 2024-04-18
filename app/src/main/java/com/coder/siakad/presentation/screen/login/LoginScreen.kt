@@ -58,6 +58,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.coder.siakad.R
 import com.coder.siakad.data.source.remote.network.request.auth.LoginRequest
 import com.coder.siakad.data.util.Resource
@@ -68,10 +69,10 @@ import kotlin.coroutines.coroutineContext
 
 @Composable
 fun LoginScreen(
-    modifier: Modifier = Modifier,
     navigateToDashboard: () -> Unit,
     loginViewModel: LoginViewModel = hiltViewModel(),
 //    snackbarHostState: SnackbarHostState,
+    modifier: Modifier = Modifier,
 ) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
@@ -83,7 +84,7 @@ fun LoginScreen(
     val snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
     val scrollState = rememberScrollState()
 
-    loginViewModel.uiLoginState.collectAsState().value.let { uiState ->
+    loginViewModel.uiLoginState.collectAsStateWithLifecycle().value.let { uiState ->
         when (uiState) {
             is Resource.Loading -> {
                 isLoading = true
@@ -233,7 +234,22 @@ fun LoginScreen(
             }
 
             Button(
-                onClick = navigateToDashboard,
+                onClick = {
+                    if (email == "" || password == "") {
+                        scope.launch {
+                            snackbarHostState.showSnackbar(
+                                "Email or password is empty!",
+                                withDismissAction = true
+                            )
+                        }
+                    } else {
+                        val request = LoginRequest(username = email, password = password)
+                        loginViewModel.login(request)
+//                        val loginRequest = UserModel(email, password)
+//                        loginViewModel.login(email = loginRequest.email)
+//                        Log.e("DEBUG ERROR", "$loginRequest")
+                    }
+                },
                 modifier = Modifier
                     .padding(top = 8.dp)
             ) {
@@ -283,9 +299,9 @@ fun LoginScreen(
                             )
                         }
                     } else {
-                        val loginRequest = LoginRequest(username = email, password = password)
-                        loginViewModel.login(loginRequest)
-                        Log.e("DEBUG ERROR", "$loginRequest")
+//                        val loginRequest = LoginRequest(username = email, password = password)
+//                        loginViewModel.login(loginRequest)
+//                        Log.e("DEBUG ERROR", "$loginRequest")
                     }
                 },
                 modifier = Modifier
