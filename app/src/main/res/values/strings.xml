@@ -54,4 +54,6 @@
     <string name="profile_mahasiswa">Profile Mahasiswa</string>
     <string name="krs_approved">KRS sudah disetujui dosen wali</string>
     <string name="krs_not_approved">Akses ditolak, Anda berada diluar jadwal KRS</string>
+    <string name="button_toggle">KRS</string>
+    <string name="button_toggle2">Daftar Kelas Kuliah</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.coder.siakad.presentation.screen.krs.component
 
+import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -35,21 +36,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.coder.siakad.R
 
+@SuppressLint("AutoboxingStateCreation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ToggleButton(onClick: (Boolean) -> Unit) {
     var isButtonKRSToggled by remember { mutableStateOf(true) }
     var isLocked by remember { mutableStateOf(true) }
-    val context = LocalContext.current
     val newSchoolYear = arrayOf(
         "Tahun ajaran Ganjil 2021/2022",
         "Tahun ajaran Genap 2022/2023",
         "Tahun ajaran Ganjil 2022/2023",
         "Tahun ajaran Genap 2023/2024",
         "Tahun ajaran Ganjil 2023/2024",
-        "Tahun ajaran Genap 2024/2025")
-    var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(newSchoolYear[0]) }
+        "Tahun ajaran Genap 2024/2025"
+    )
+    var isExpanded = remember { mutableStateOf(false) }
+    var selectedText = remember { mutableStateOf(newSchoolYear[0]) }
 
     Column {
         Row {
@@ -63,10 +65,10 @@ fun ToggleButton(onClick: (Boolean) -> Unit) {
                 ),
                 border = BorderStroke(1.dp, Color(0xFF245399)),
                 modifier = Modifier
-                    .padding(start = 7.dp, end = 7.dp)
+                    .padding(start = 4.dp)
             ) {
                 Text(
-                    text = "KRS",
+                    text = stringResource(R.string.button_toggle),
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
@@ -89,7 +91,7 @@ fun ToggleButton(onClick: (Boolean) -> Unit) {
                     .padding(start = 8.dp, end = 8.dp)
             ) {
                 Text(
-                    text = "Daftar Kelas Kuliah",
+                    text = stringResource(R.string.button_toggle2),
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Medium,
@@ -126,45 +128,44 @@ fun ToggleButton(onClick: (Boolean) -> Unit) {
 
             Box {
                 ExposedDropdownMenuBox(
-                    expanded = expanded,
+                    expanded = isExpanded.value,
                     onExpandedChange = {
-                        expanded = !expanded
+                        isExpanded.value = !isExpanded.value
                     }
                 ) {
                     TextField(
-                        value = selectedText,
-                        onValueChange = {},
+                        value = selectedText.value,
+                        onValueChange = { },
                         readOnly = true,
-                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded.value) },
                         modifier = Modifier
                             .menuAnchor()
-                            .padding(top = 5.dp)
+                            .padding(top = 5.dp),
+                        textStyle = TextStyle(fontSize = 16.sp)
                     )
 
                     ExposedDropdownMenu(
-                        expanded = expanded,
-                        onDismissRequest = { expanded = false }
+                        expanded = isExpanded.value,
+                        onDismissRequest = { isExpanded.value = false }
                     ) {
                         newSchoolYear.forEach { item ->
                             DropdownMenuItem(
                                 text = { Text(text = item) },
                                 onClick = {
-                                    selectedText = item
-                                    expanded = false
-                                    Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                                    selectedText.value = item
+                                    isExpanded.value = false
                                 }
                             )
                         }
                     }
                 }
             }
-
         }
     }
 }
+
 @Preview
 @Composable
 fun DefaultPreviewToggleButton(){
-    ToggleButton {
-    }
+    ToggleButton {}
 }
