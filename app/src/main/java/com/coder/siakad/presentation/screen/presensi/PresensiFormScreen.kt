@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,11 +26,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.coder.siakad.R
+import com.coder.siakad.presentation.component.CustomButton
 import com.coder.siakad.presentation.component.MultipleChoice
 import com.coder.siakad.presentation.component.header.TopBar
 import com.coder.siakad.presentation.component.input.SiakadInputText
@@ -40,13 +45,14 @@ fun PresensiFormScreen(
     modifier: Modifier = Modifier,
     navigateBack: () -> Unit,
     labelSchedule: String,
+    onClick: () -> Unit,
     countOfMeeting: Int = 7
 ) {
     val bottomPadding = 15.dp
-    var selectedOption by remember { mutableStateOf(options[0]) }
-    var selectedQualityCourse by remember {
-        mutableStateOf(optionsQualityCourse[0])
-    }
+//    var selectedOption by remember { mutableStateOf(options[0]) }
+//    var selectedQualityCourse by remember {
+//        mutableStateOf(optionsQualityCourse[0])
+//    }
 
     Scaffold(
         topBar = {
@@ -108,10 +114,10 @@ fun PresensiFormScreen(
                     enable = false,
                     supportingText = null
                 )
-                MultipleChoice(options = options , selectedOption = "offline"){
-                    newSelectedOption ->
-                    selectedOption = newSelectedOption
-                }
+//                MultipleChoice(options = options , selectedOption = "offline"){
+//                    newSelectedOption ->
+//                    selectedOption = newSelectedOption
+//                }
                 SiakadInputText(
                     value = "Variable & Tipe data",
                     label = stringResource(id = R.string.meeting_topic),
@@ -138,10 +144,6 @@ fun PresensiFormScreen(
                     placeholder = "\n\n\n\n"
                 )
                 Text(text = "How quality of the course today's")
-                MultipleChoice(options = optionsQualityCourse , selectedOption = "Baik sekali"){
-                    newSelectedOption ->
-                    selectedQualityCourse = newSelectedOption
-                }
                 SiakadInputText(
                     value = "",
                     label = stringResource(id = R.string.criticism_suggestions),
@@ -150,6 +152,24 @@ fun PresensiFormScreen(
                     supportingText = null,
                     maxLines = 7,
                     placeholder = "\n\n\n\n"
+                )
+                CustomButton(
+//                    isOutline = false,
+//                    isNotWide = true,
+                    text = {
+                        Text(text = "Selengkapnya", style = MaterialTheme.typography.labelMedium)
+                    },
+                    trailingIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_detail_lecture),
+                            contentDescription = "detail",
+                            modifier = Modifier
+                                .size(24.dp)
+                                .padding(start = 8.dp)
+                        )
+                    },
+                    onClick = onClick,
+                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
                 )
             }
         }
@@ -166,6 +186,6 @@ val optionsQualityCourse = listOf("Baik sekali", "Baik", "Kurang", "Kurang sekal
 @Composable
 fun PresensiFormScreenPreview() {
     SiakadTheme {
-        PresensiFormScreen(navigateBack = { }, labelSchedule = "Pemrograman Web")
+        PresensiFormScreen(navigateBack = { }, labelSchedule = "Pemrograman Web", onClick = {})
     }
 }

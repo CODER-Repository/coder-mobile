@@ -1,5 +1,7 @@
 package com.coder.siakad.presentation.screen.login
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 
 
@@ -16,7 +18,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -26,14 +30,21 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -46,19 +57,57 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.coder.siakad.R
+import com.coder.siakad.data.source.remote.network.request.auth.LoginRequest
+import com.coder.siakad.data.util.Resource
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    navigateToDashboard: () -> Unit,
+    loginViewModel: LoginViewModel = hiltViewModel(),
+//    snackbarHostState: SnackbarHostState,
+    modifier: Modifier = Modifier,
+) {
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    val passwordVisible = rememberSaveable { mutableStateOf(false) }
+    var isLoading by remember { mutableStateOf<Boolean>(false) }
+
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
+    val scrollState = rememberScrollState()
+
+    loginViewModel.uiLoginState.collectAsStateWithLifecycle().value.let { uiState ->
+        when (uiState) {
+            is Resource.Loading -> {
+                isLoading = true
+            }
+
+            is Resource.Success -> {
+                navigateToDashboard()
+                isLoading = false
+            }
+
+            is Resource.Error -> {
+                Toast.makeText(context, uiState.message, Toast.LENGTH_SHORT).show()
+                isLoading = false
+            }
+        }
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
-            .padding(30.dp)
-
+            .padding(30.dp),
     ) {
-        Column(modifier = Modifier) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -113,14 +162,11 @@ fun LoginScreen() {
                 textAlign = TextAlign.Start
             )
 
-            val textValue = remember {
-                mutableStateOf("")
-            }
             OutlinedTextField(
                 label = { Text(text = stringResource(id = R.string.email_text)) },
                 modifier = Modifier
                     .fillMaxWidth(),
-                value = textValue.value,
+                value = email,
                 /*colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = colorResource(id = R.color.grey_text),
                     focusedLabelColor = colorResource(id = R.color.grey_text),
@@ -128,28 +174,22 @@ fun LoginScreen() {
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
 
                 onValueChange = {
-                    textValue.value = it
+                    email = it
                 },
             )
 
-            val password = remember {
-                mutableStateOf("")
-            }
-            val passwordVisible = remember {
-                mutableStateOf(false)
-            }
             OutlinedTextField(
                 label = { Text(text = stringResource(id = R.string.password_text)) },
                 modifier = Modifier
                     .fillMaxWidth(),
-                value = password.value,
+                value = password,
                 /*colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = colorResource(id = R.color.grey_text),
                     focusedLabelColor = colorResource(id = R.color.grey_text),
                 ),*/
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 onValueChange = {
-                    password.value = it
+                    password = it
                 },
                 trailingIcon = {
                     val iconImage = if (passwordVisible.value) {
@@ -194,7 +234,23 @@ fun LoginScreen() {
             }
 
             Button(
-                onClick = {  },
+                onClick = {
+                    navigateToDashboard()
+//                    if (email == "" || password == "") {
+//                        scope.launch {
+//                            snackbarHostState.showSnackbar(
+//                                "Email or password is empty!",
+//                                withDismissAction = true
+//                            )
+//                        }
+//                    } else {
+//                        val request = LoginRequest(username = email, password = password)
+//                        loginViewModel.login(request)
+////                        val loginRequest = UserModel(email, password)
+////                        loginViewModel.login(email = loginRequest.email)
+////                        Log.e("DEBUG ERROR", "$loginRequest")
+//                    }
+                },
                 modifier = Modifier
                     .padding(top = 8.dp)
             ) {
@@ -211,44 +267,65 @@ fun LoginScreen() {
                 )
             }
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
-                Divider(modifier = Modifier
-                    .width(150.dp)
-                    .padding(8.dp),
+                Divider(
+                    modifier = Modifier
+                        .width(150.dp)
+                        .padding(8.dp),
                     color = Color.Gray,
                     thickness = 1.dp,
-                    )
+                )
                 Text(text = "Or")
-                Divider(modifier = Modifier
-                    .width(150.dp)
-                    .padding(8.dp),
+                Divider(
+                    modifier = Modifier
+                        .width(150.dp)
+                        .padding(8.dp),
                     color = Color.Gray,
                     thickness = 1.dp,
-                    )
+                )
             }
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                          navigateToDashboard()
+//                    if (email == "" || password == "") {
+//                        scope.launch {
+//                            snackbarHostState.showSnackbar(
+//                                "Email or password is empty!",
+//                                withDismissAction = true
+//                            )
+//                        }
+//                    } else {
+//                        val loginRequest = LoginRequest(username = email, password = password)
+//                        loginViewModel.login(loginRequest)
+//                        Log.e("DEBUG ERROR", "$loginRequest")
+//                    }
+                },
                 modifier = Modifier
                     .padding(8.dp)
                     .fillMaxWidth(),
             ) {
-                Row(modifier = Modifier
-                    .padding(3.dp),
-                verticalAlignment = Alignment.CenterVertically
+                Row(
+                    modifier = Modifier
+                        .padding(3.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Image(painter = painterResource(id = R.drawable.google),
-                        contentDescription ="Login With Google",
+                    Image(
+                        painter = painterResource(id = R.drawable.google),
+                        contentDescription = "Login With Google",
                         modifier = Modifier
                             .size(30.dp)
                     )
-                    Text(text = stringResource(id = R.string.login_google_btn),
+                    Text(
+                        text = stringResource(id = R.string.login_google_btn),
                         style = MaterialTheme.typography.labelLarge,
-                        textAlign = TextAlign.Center)
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
 
@@ -256,8 +333,8 @@ fun LoginScreen() {
     }
 }
 
-@Preview
-@Composable
-fun DefaultPreviewOfLoginScreen() {
-    LoginScreen()
-}
+//@Preview
+//@Composable
+//fun DefaultPreviewOfLoginScreen() {
+//    LoginScreen(navigateToDashboard = {}, snackbarHostState = null)
+//}

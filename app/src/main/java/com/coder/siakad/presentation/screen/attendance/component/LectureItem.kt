@@ -137,10 +137,8 @@ fun LectureItem(
                 )
             }
             CustomButton(
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary
-                ),
+//                isOutline = false,
+//                isNotWide = true,
                 text = {
                     Text(text = "Selengkapnya", style = MaterialTheme.typography.labelMedium)
                 },
@@ -170,6 +168,8 @@ fun LecturePrev() {
             numMeet = 6,
             time = "07:30 - 09:10",
             lecturer = "Arip Budiono S.ST., M.T",
-            onClick = { /*TODO*/ })
+            onClick = { /*TODO*/ },
+            modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
+        )
     }
 }
