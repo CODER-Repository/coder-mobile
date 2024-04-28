@@ -235,20 +235,21 @@ fun LoginScreen(
 
             Button(
                 onClick = {
-                    if (email == "" || password == "") {
-                        scope.launch {
-                            snackbarHostState.showSnackbar(
-                                "Email or password is empty!",
-                                withDismissAction = true
-                            )
-                        }
-                    } else {
-                        val request = LoginRequest(username = email, password = password)
-                        loginViewModel.login(request)
-//                        val loginRequest = UserModel(email, password)
-//                        loginViewModel.login(email = loginRequest.email)
-//                        Log.e("DEBUG ERROR", "$loginRequest")
-                    }
+                    navigateToDashboard()
+//                    if (email == "" || password == "") {
+//                        scope.launch {
+//                            snackbarHostState.showSnackbar(
+//                                "Email or password is empty!",
+//                                withDismissAction = true
+//                            )
+//                        }
+//                    } else {
+//                        val request = LoginRequest(username = email, password = password)
+//                        loginViewModel.login(request)
+////                        val loginRequest = UserModel(email, password)
+////                        loginViewModel.login(email = loginRequest.email)
+////                        Log.e("DEBUG ERROR", "$loginRequest")
+//                    }
                 },
                 modifier = Modifier
                     .padding(top = 8.dp)
@@ -291,18 +292,19 @@ fun LoginScreen(
 
             Button(
                 onClick = {
-                    if (email == "" || password == "") {
-                        scope.launch {
-                            snackbarHostState.showSnackbar(
-                                "Email or password is empty!",
-                                withDismissAction = true
-                            )
-                        }
-                    } else {
+                          navigateToDashboard()
+//                    if (email == "" || password == "") {
+//                        scope.launch {
+//                            snackbarHostState.showSnackbar(
+//                                "Email or password is empty!",
+//                                withDismissAction = true
+//                            )
+//                        }
+//                    } else {
 //                        val loginRequest = LoginRequest(username = email, password = password)
 //                        loginViewModel.login(loginRequest)
 //                        Log.e("DEBUG ERROR", "$loginRequest")
-                    }
+//                    }
                 },
                 modifier = Modifier
                     .padding(8.dp)

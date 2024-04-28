@@ -1,6 +1,7 @@
 package com.coder.siakad.data.source.local.localPreferences
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -19,7 +20,7 @@ class UserPreference @Inject constructor(private val datauserUser: DataStore<Pre
     fun getUser(): Flow<UserModel> {
         return datauserUser.data.map {preference ->
             UserModel(
-                token = preference[TOKEN_KEY] ?: "null",
+                token = preference[TOKEN_KEY],
                 email = preference[EMAIL_KEY] ?: "",
                 password = preference[PASSWORD_KEY] ?: "",
                 name = preference[NAME_KEY] ?: ""

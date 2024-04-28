@@ -73,7 +73,11 @@ import com.coder.siakad.ui.theme.PrimaryYellow500
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardScreen(onLogout: () -> Unit, menuButtonHandler: List<()->Unit>) {
+fun DashboardScreen(
+    onLogout: () -> Unit,
+    navigateToSchedule: () -> Unit,
+    menuButtonHandler: List<()->Unit>
+) {
 
     var dropdownExpanded by remember { mutableStateOf(false) }
 

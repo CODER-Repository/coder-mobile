@@ -66,6 +66,7 @@ fun SiakadApp(
             composable(Screen.Attendance.route){
                 AttendanceScreen()
             }
+//            composable(Screen.)
         }
     }
 }

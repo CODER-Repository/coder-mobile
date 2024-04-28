@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
@@ -29,6 +30,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -139,7 +141,22 @@ fun overLayInformation(
 //            content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed risus ullamcorper, imperdiet purus vehicula, faucibus metus. Donec et velit risus. Nunc malesuada finibus nunc, eu lobortis ante efficitur nec. Donec malesuada lacinia malesuada. Sed sed faucibus tellus, non rhoncus neque. Sed placerat est non urna pellentesque semper. Praesent justo purus, convallis quis leo eu, semper porta urna. Sed sed dui nisi. Proin sed purus dui. Sed maximus erat vitae sem pretium iaculis. Morbi blandit accumsan tortor, mollis pharetra orci pulvinar id. Nulla enim risus, sagittis a placerat eget, imperdiet at arcu. Sed malesuada consectetur diam nec feugiat. Etiam consectetur hendrerit risus, in ullamcorper mauris porta eget.",
 //            imageContent = "https://studio.mrngroup.co/storage/app/media/Prambors/Editorial%203/Anime-20230828121723.webp?tr=w-600",
 //            page = 1,
-//            pagerState = {}
 //        )
 //    }
 //}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Preview
+@Composable
+fun OverLayInformationPreview() {
+    val pagerState = rememberPagerState(pageCount = { 3 })
+    val page = remember { 0 } // Set the page index for preview
+    val title = "Sample Title"
+    val imageContent =
+        "https://studio.mrngroup.co/storage/app/media/Prambors/Editorial%203/Anime-20230828121723.webp?tr=w-600"
+    val content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod."
+
+    SiakadTheme {
+    overLayInformation(pagerState, page, title, imageContent, content)
+    }
+}
