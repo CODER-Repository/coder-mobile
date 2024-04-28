@@ -75,7 +75,6 @@ import com.coder.siakad.ui.theme.PrimaryYellow500
 @Composable
 fun DashboardScreen(
     onLogout: () -> Unit,
-    navigateToSchedule: () -> Unit,
     menuButtonHandler: List<()->Unit>
 ) {
 
