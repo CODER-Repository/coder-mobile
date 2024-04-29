@@ -31,11 +31,12 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun AttendanceScreen() {
+fun AttendanceScreen(
+    navigateToPresensiForm: () -> Unit,
+) {
     val attendanceTitles = listOf("Hari Ini", "Daftar Kelas")
     val tabPagerState = rememberPagerState { attendanceTitles.size }
     val coroutineScope = rememberCoroutineScope()
-
     Scaffold(
         topBar = {
             TopBar(title = "Presensi")
@@ -60,7 +61,7 @@ fun AttendanceScreen() {
             HorizontalPager(state = tabPagerState) { tabIndex ->
                 when (attendanceTitles[tabIndex]) {
                     "Hari Ini" -> {
-                        TodayContent(dummyListLecture, modifier = Modifier.padding(20.dp))
+                        TodayContent(dummyListLecture, modifier = Modifier.padding(20.dp), onClick = navigateToPresensiForm)
                     }
                 }
             }
@@ -69,7 +70,7 @@ fun AttendanceScreen() {
 }
 
 @Composable
-fun TodayContent(lectures: List<Lecture>, modifier: Modifier = Modifier) {
+fun TodayContent(lectures: List<Lecture>, modifier: Modifier = Modifier, onClick:() -> Unit) {
     Card(
         shape = CardDefaults.elevatedShape,
         elevation = CardDefaults.cardElevation(2.dp),
@@ -93,7 +94,7 @@ fun TodayContent(lectures: List<Lecture>, modifier: Modifier = Modifier) {
                         numMeet = lecture.numMeet,
                         time = lecture.time,
                         lecturer = lecture.lecturer,
-                        onClick = { /*TODO*/ },
+                        onClick = onClick,
                     )
                 }
             }
@@ -105,7 +106,7 @@ fun TodayContent(lectures: List<Lecture>, modifier: Modifier = Modifier) {
 @Composable
 fun Attendprev() {
     SiakadTheme {
-        TodayContent(dummyListLecture)
+        TodayContent(dummyListLecture, onClick = {})
     }
 }
 

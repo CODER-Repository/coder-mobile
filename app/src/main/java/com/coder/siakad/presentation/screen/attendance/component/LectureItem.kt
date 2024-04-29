@@ -137,8 +137,9 @@ fun LectureItem(
                 )
             }
             CustomButton(
-//                isOutline = false,
-//                isNotWide = true,
+                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                varSizeButton = "isWide",
+                varOutline = "",
                 text = {
                     Text(text = "Selengkapnya", style = MaterialTheme.typography.labelMedium)
                 },
@@ -152,7 +153,6 @@ fun LectureItem(
                     )
                 },
                 onClick = onClick,
-                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
             )
         }
     }

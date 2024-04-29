@@ -11,6 +11,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,29 +36,29 @@ fun CourseItem(
             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold, color = TextPrimary),
             modifier = Modifier.padding(bottom = 8.dp)
         )
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 imageVector = Icons.Default.Class,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 10.dp)
             )
-            Text(text = idClass, style = MaterialTheme.typography.bodyLarge.copy(color = TextSecondary))
+            Text(text = idClass, style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary))
         }
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 imageVector = Icons.Default.AccessTimeFilled,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 10.dp)
             )
-            Text(text = time, style = MaterialTheme.typography.bodyLarge.copy(color = TextSecondary))
+            Text(text = time, style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary))
         }
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 imageVector = Icons.Default.MapsHomeWork,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 10.dp)
             )
-            Text(text = room, style = MaterialTheme.typography.bodyLarge.copy(color = TextSecondary))
+            Text(text = room, style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary))
         }
     }
 }
