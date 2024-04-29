@@ -143,7 +143,8 @@ fun PresensiFormScreen(
                     maxLines = 7,
                     placeholder = "\n\n\n\n"
                 )
-                Text(text = "How quality of the course today's")
+                Text(text = "How quality of the course today's", style = MaterialTheme.typography.labelMedium)
+                //radio button
                 SiakadInputText(
                     value = "",
                     label = stringResource(id = R.string.criticism_suggestions),
@@ -154,8 +155,8 @@ fun PresensiFormScreen(
                     placeholder = "\n\n\n\n"
                 )
                 CustomButton(
-//                    isOutline = false,
-//                    isNotWide = true,
+                    varSizeButton = "isWide",
+                    varOutline = "",
                     text = {
                         Text(text = "Selengkapnya", style = MaterialTheme.typography.labelMedium)
                     },
@@ -168,7 +169,7 @@ fun PresensiFormScreen(
                                 .padding(start = 8.dp)
                         )
                     },
-                    onClick = onClick,
+                    onClick = {  },
                     modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
                 )
             }
