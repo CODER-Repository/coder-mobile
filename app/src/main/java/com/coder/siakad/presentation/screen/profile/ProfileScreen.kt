@@ -29,18 +29,18 @@ import com.coder.siakad.ui.theme.SiakadTheme
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
-    title: String,
     navigateBack: () -> Unit,
+    navigateToEditProfile: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopBar(
-                title = title,
+                title = "Profile",
                 navigateBack = navigateBack,
                 modifier = modifier,
                 backButton = true,
                 actions = {
-                    TopBarIconButton(onClick = { }) {
+                    TopBarIconButton(onClick = { navigateToEditProfile() }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_edit_profile),
                             contentDescription = stringResource(id = R.string.edit_profile)
@@ -67,20 +67,18 @@ fun ProfileScreen(
                     nim = "3012110023",
                 )
                 ProfileCard(
-                    username = "Rafika wardah",
-                    email = "email",
-                    phoneNumber = "phoneNumber",
-                    birthplace = "birthplace",
-                    dateOfBirth = "dateOfBirth",
-                    entryYear = "entryYear",
-                    address = "address",
-                    password = "password",
-                    studyProgram = "Class",
-                    classType = "",
-                    nim = "",
-
-                    )
-
+                    username = "Rafika Wardah",
+                    email = "rafika.wardah12@gmail.com",
+                    phoneNumber = "08561111",
+                    birthplace = "Mojokerto",
+                    entryYear = "2021",
+                    dateOfBirth = "7 Maret 2002",
+                    address = "Jl Wachid Hasyim RT/RW 05/12, kecamatan. Mojosari,kabupaten.Mojokerto",
+                    password = "RafikaWardah",
+                    nim = "3012110023",
+                    classType = "Reguler",
+                    studyProgram = "Informatika"
+                )
             }
         }
     }
@@ -94,7 +92,7 @@ fun ProfileScreenPreview() {
         ProfileScreen(
             navigateBack = {},
             modifier = Modifier,
-            title = "Profile",
+            navigateToEditProfile = {}
         )
     }
 }

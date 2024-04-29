@@ -60,7 +60,7 @@ fun ProfileCard(
         Column(modifier = Modifier.fillMaxSize()) {
             //PERSONAL DATA
             Column(
-                modifier = modifier.padding(horizontal = 20.dp, vertical = 20.dp),
+                modifier = modifier.padding(horizontal = 16.dp, vertical = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
