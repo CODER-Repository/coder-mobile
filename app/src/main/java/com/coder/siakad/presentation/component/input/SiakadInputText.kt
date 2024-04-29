@@ -102,7 +102,7 @@ fun SiakadInputText(
                 disabledTextColor = TextDisable,
                 focusedTextColor = TextPrimary
             ),
-            textStyle = MaterialTheme.typography.labelSmall,
+            textStyle = MaterialTheme.typography.labelMedium,
             enabled = enable,
             readOnly = readOnly,
             shape = MaterialTheme.shapes.medium,

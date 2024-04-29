@@ -1,5 +1,6 @@
 package com.coder.siakad.presentation.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -27,8 +28,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.coder.siakad.ui.theme.SiakadTheme
 
+//
 @Composable
-fun style1(variant: String): Modifier {
+fun sizeButton(variant: String): Modifier {
     if (variant == "isWide") {
         Modifier
             .clip(RoundedCornerShape(4.dp))
@@ -49,17 +51,17 @@ fun style1(variant: String): Modifier {
 }
 
 @Composable
-fun buttonStyle(variant: String): ButtonColors {
+fun outlineButton(variant: String): ButtonColors {
 
     val button = if (variant == "isOutline") {
         ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
+            containerColor = Color.Transparent,
+            contentColor = MaterialTheme.colorScheme.primary
         )
     } else {
         ButtonDefaults.buttonColors(
-            containerColor = Color.Transparent,
-            contentColor = MaterialTheme.colorScheme.primary
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary
         )
     }
     return button
@@ -73,11 +75,14 @@ fun CustomButton(
     modifier: Modifier = Modifier,
     leadingIcon: @Composable RowScope.() -> Unit = {},
     trailingIcon: @Composable RowScope.() -> Unit = {},
+    varSizeButton: String,
+    varOutline: String,
 ) {
     Button(
         onClick = onClick,
-        modifier = style1(variant = "isWide"),
-        colors = buttonStyle(variant = "isOutline")
+        modifier = sizeButton(variant = varSizeButton),
+        colors = outlineButton(variant = varOutline),
+        border =  BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -109,7 +114,8 @@ fun PrevButton() {
                     modifier = Modifier.padding(start = 8.dp)
                 )
             },
-            modifier = style1(variant = "isWide"),
-            )
+            varSizeButton = "isWide",
+            varOutline = "isOutline"
+        )
     }
 }

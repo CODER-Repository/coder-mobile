@@ -62,6 +62,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.coder.siakad.presentation.component.header.TopBarIconButton
 import com.coder.siakad.presentation.component.NavBar
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardInfo
@@ -75,8 +77,9 @@ import com.coder.siakad.ui.theme.PrimaryYellow500
 @Composable
 fun DashboardScreen(
     onLogout: () -> Unit,
-    menuButtonHandler: List<()->Unit>
-) {
+    menuButtonHandler: List<() -> Unit>,
+    navigateToProfile: () -> Unit,
+    ) {
 
     var dropdownExpanded by remember { mutableStateOf(false) }
 
@@ -134,7 +137,7 @@ fun DashboardScreen(
                                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                                     modifier = Modifier
                                         .clip(MaterialTheme.shapes.extraSmall)
-                                        .clickable { }
+                                        .clickable { navigateToProfile() }
                                         .padding(4.dp)
                                         .fillMaxWidth(),
                                 ) {
@@ -208,7 +211,7 @@ fun DashboardScreen(
                         ) {
                             Column {
                                 Text(
-                                    text = "Husni Mubarok",
+                                    text = "Rafika Wardah Kamilah",
                                     style = MaterialTheme.typography.labelLarge,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.onPrimary,
@@ -237,13 +240,12 @@ fun DashboardScreen(
                 }
             }
         },
-        bottomBar = { NavBar() }
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .padding(paddingValues)
                 .padding(16.dp)
-            ) {
+        ) {
             // Dashboard Info
             OutlinedCard {
                 Column(
@@ -316,31 +318,31 @@ fun DashboardScreen(
                     title = "Jadwal",
                     icon = Icons.Rounded.CalendarMonth,
                     color = Color(0xFFBB50EE),
-                    route = "",
+                    route = menuButtonHandler.getOrNull(0) ?: {},
                 ),
                 DashboardMenu(
                     title = "Presensi",
                     icon = Icons.Rounded.EditCalendar,
                     color = Color(0xFF1EB193),
-                    route = "",
+                    route = menuButtonHandler.getOrNull(1) ?: {},
                 ),
                 DashboardMenu(
                     title = "Nilai",
                     icon = Icons.Rounded.FileCopy,
                     color = PrimaryYellow500,
-                    route = "",
+                    route = menuButtonHandler.getOrNull(2) ?: {},
                 ),
                 DashboardMenu(
                     title = "Biaya Akademik",
                     icon = Icons.Rounded.RequestQuote,
                     color = PrimaryYellow500,
-                    route = "",
+                    route = menuButtonHandler.getOrNull(3) ?: {},
                 ),
                 DashboardMenu(
                     title = "Kuisioner",
                     icon = Icons.Outlined.FormatListNumbered,
                     color = PrimaryBlue500,
-                    route = "",
+                    route = menuButtonHandler.getOrNull(4) ?: {},
                 ),
             )
 

@@ -26,7 +26,7 @@ data class DashboardMenu(
     val title: String,
     val icon: ImageVector,
     val color: Color,
-    val route: String,
+    val route: () -> Unit,
 )
 
 
