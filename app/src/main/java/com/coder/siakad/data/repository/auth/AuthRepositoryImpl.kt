@@ -33,7 +33,7 @@ import retrofit2.HttpException
 @ActivityScoped
 class AuthRepositoryImpl(
     private val api: ApiService,
-    private val pref: UserPreference
+//    private val pref: UserPreference
 ) : AuthRepository {
 
     //We just need LiveData to Obsserve and trigger UIState. Not Use Flow
@@ -104,8 +104,9 @@ class AuthRepositoryImpl(
                 emit(handleError(e))
             }
         }
-
+/*
     suspend fun saveUser(user: UserModel) {
         pref.saveUser(user)
     }
+ */
 }
