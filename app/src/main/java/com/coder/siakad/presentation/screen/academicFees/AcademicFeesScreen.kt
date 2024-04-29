@@ -10,16 +10,23 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.coder.siakad.presentation.navigation.Screen
 import com.coder.siakad.presentation.screen.academicFees.component.overLayInformation
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPagerIndicator
 
+@Composable
+fun AcademicFeesScreen(){
+    Text(text = "Coba")
+    InformationSlider()
+}
 //Banner Carousel
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -28,6 +35,7 @@ fun InformationSlider() {
         rememberPagerState(initialPage = 0, pageCount = { FakeDataInformation.dataFake.size })
     val animationScope = rememberCoroutineScope()
     Column(modifier = Modifier.fillMaxWidth()) {
+        Text(text = "Test")
         HorizontalPager(
             state = pagerState,
             userScrollEnabled = true,

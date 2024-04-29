@@ -108,8 +108,8 @@ fun overLayInformation(
 
                 )
                 CustomButton(
-//                    isOutline = true,
-//                    isNotWide = true,
+                    varSizeButton = "isWide",
+                    varOutline = "",
                     modifier = Modifier.wrapContentHeight(Alignment.Bottom), // Mengubah modifier menjadi wrapContentSize()
                     text = {
                         Text(
