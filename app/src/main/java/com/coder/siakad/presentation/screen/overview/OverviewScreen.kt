@@ -26,6 +26,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -49,7 +50,8 @@ import com.coder.siakad.ui.theme.SiakadTheme
 fun CardTodaySchedule(
     cardLecture: List<CardLecture>,
     modifier: Modifier = Modifier,
-    name: String
+    name: String,
+    navigateToSchedule: () -> Unit
 ) {
     Column(
         modifier = modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
@@ -75,11 +77,13 @@ fun CardTodaySchedule(
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold)
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = "Selengkapnya",
-                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Normal),
-                    color = MaterialTheme.colorScheme.primary
-                )
+                TextButton(onClick = {  }) {
+                    Text(
+                        text = "Selengkapnya",
+                        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Normal),
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowRight,
                     tint = MaterialTheme.colorScheme.primary,
@@ -153,6 +157,6 @@ val dummyListCardLecture = listOf(
 @Composable
 private fun CardTodayContentPreview() {
     SiakadTheme {
-        CardTodaySchedule(cardLecture = dummyListCardLecture, name = "Rafika")
+        CardTodaySchedule(cardLecture = dummyListCardLecture, name = "Rafika", navigateToSchedule = {})
     }
 }
