@@ -1,5 +1,6 @@
 package com.coder.siakad.presentation.screen.dashboard
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -57,6 +58,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.DpOffset
@@ -64,6 +66,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 import com.coder.siakad.presentation.component.header.TopBarIconButton
 import com.coder.siakad.presentation.component.NavBar
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardInfo
@@ -81,7 +84,7 @@ fun DashboardScreen(
     onLogout: () -> Unit,
     menuButtonHandler: List<() -> Unit>,
     navigateToProfile: () -> Unit,
-    ) {
+) {
 
     var dropdownExpanded by remember { mutableStateOf(false) }
 
@@ -199,12 +202,22 @@ fun DashboardScreen(
                         modifier = Modifier.height(IntrinsicSize.Min),
                         horizontalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        Box(
+//                        Box(
+//                            modifier = Modifier
+//                                .size(72.dp)
+//                                .border(4.dp, Color.White, CircleShape)
+//                                .clip(CircleShape)
+//                                .background(Color.LightGray)
+//                        )
+                        AsyncImage(
+                            model = "https://i.pinimg.com/736x/bc/20/94/bc20948f3bccfd926b41688b38b3d9c9.jpg",
+                            contentDescription = "Fika",
                             modifier = Modifier
                                 .size(72.dp)
-                                .border(4.dp, Color.White, CircleShape)
                                 .clip(CircleShape)
-                                .background(Color.LightGray)
+                                .border(4.dp, Color.White, CircleShape)
+                                .background(Color.LightGray),
+                            contentScale = ContentScale.Crop
                         )
                         Column(
                             modifier = Modifier
