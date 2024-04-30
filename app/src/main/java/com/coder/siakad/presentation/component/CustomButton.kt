@@ -33,7 +33,7 @@ import com.coder.siakad.ui.theme.SiakadTheme
 fun sizeButton(variant: String): Modifier {
     if (variant == "isWide") {
         Modifier
-            .clip(RoundedCornerShape(4.dp))
+            .clip(RoundedCornerShape(2.dp))
             .border(
                 width = 2.dp,
                 color = Color.Transparent
@@ -41,7 +41,7 @@ fun sizeButton(variant: String): Modifier {
             .background(color = MaterialTheme.colorScheme.primary)
             .fillMaxWidth()
     } else Modifier
-        .clip(RoundedCornerShape(4.dp))
+        .clip(RoundedCornerShape(2.dp))
         .border(
             width = 2.dp,
             color = MaterialTheme.colorScheme.primary
