@@ -3,28 +3,20 @@ package com.coder.siakad.presentation.screen.academicFees.component
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.ArrowRight
-import androidx.compose.material.icons.filled.EventAvailable
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -37,21 +29,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.util.lerp
 import coil.compose.AsyncImage
-import coil.compose.SubcomposeAsyncImageScope
 import com.coder.siakad.presentation.component.CustomButton
 import com.coder.siakad.ui.theme.SiakadTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun overLayInformation(
+fun OverLayInformation(
     pagerState: PagerState,
     page: Int,
     title: String,
@@ -64,7 +53,7 @@ fun overLayInformation(
         modifier = Modifier
             .fillMaxWidth()
             .height(154.dp)
-            .padding(horizontal = 10.dp)
+            .padding(end = 4.dp)
             .clip(RoundedCornerShape(4.dp)),
     ) {
         Row(
@@ -108,8 +97,8 @@ fun overLayInformation(
 
                 )
                 CustomButton(
-                    varSizeButton = "isWide",
-                    varOutline = "",
+                    varSizeButton = "",
+                    varOutline = "isOutline",
                     modifier = Modifier.wrapContentHeight(Alignment.Bottom), // Mengubah modifier menjadi wrapContentSize()
                     text = {
                         Text(
@@ -157,6 +146,6 @@ fun OverLayInformationPreview() {
     val content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod."
 
     SiakadTheme {
-    overLayInformation(pagerState, page, title, imageContent, content)
+    OverLayInformation(pagerState, page, title, imageContent, content)
     }
 }
