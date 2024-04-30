@@ -18,6 +18,7 @@ import com.coder.siakad.presentation.navigation.Screen
 import com.coder.siakad.presentation.screen.academicFees.AcademicFeesScreen
 import com.coder.siakad.presentation.screen.attendance.AttendanceScreen
 import com.coder.siakad.presentation.screen.dashboard.DashboardScreen
+import com.coder.siakad.presentation.screen.krs.KrsScreen
 import com.coder.siakad.presentation.screen.login.LoginScreen
 import com.coder.siakad.presentation.screen.login.LoginViewModel
 import com.coder.siakad.presentation.screen.presensi.PresensiFormScreen
@@ -51,6 +52,7 @@ fun SiakadApp(
                 || currentRoute == Screen.Schedule.route
                 || currentRoute == Screen.Attendance.route
                 || currentRoute == Screen.AcademicFees.route
+                || currentRoute == Screen.KRS.route
             ) {
                 NavBar(navController)
             }
@@ -79,7 +81,7 @@ fun SiakadApp(
                     menuButtonHandler = listOf(
                         { navController.navigate(Screen.Schedule.route) },
                         { navController.navigate(Screen.Attendance.route) },
-                        {},
+                        { navController.navigate(Screen.KRS.route)},
                         { navController.navigate(Screen.AcademicFees.route) },
                         {}
                     ),
@@ -118,6 +120,9 @@ fun SiakadApp(
                         navController.navigateUp()
                     }
                 )
+            }
+            composable(Screen.KRS.route){
+                KrsScreen(title = "KRS")
             }
         }
     }
