@@ -69,8 +69,10 @@ import com.coder.siakad.presentation.component.NavBar
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardInfo
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardMenu
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardMenuButton
+import com.coder.siakad.ui.theme.Green500
 import com.coder.siakad.ui.theme.PrimaryBlue500
 import com.coder.siakad.ui.theme.PrimaryYellow500
+import com.coder.siakad.ui.theme.Purple500
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -261,7 +263,7 @@ fun DashboardScreen(
                                 title = "IPK Kumulatif",
                                 icon = Icons.AutoMirrored.Outlined.InsertDriveFile,
                                 value = "3.90",
-                                color = Color(0xFF1EB193),
+                                color = Green500,
                                 modifier = Modifier.weight(1f)
                             )
                             Spacer(
@@ -275,7 +277,7 @@ fun DashboardScreen(
                                 title = "Total SKS Diambil",
                                 icon = Icons.Default.FormatListNumbered,
                                 value = "24",
-                                color = Color(0xFFEDA60E),
+                                color = PrimaryYellow500,
                                 modifier = Modifier.weight(1f)
                             )
                         }
@@ -317,13 +319,13 @@ fun DashboardScreen(
                 DashboardMenu(
                     title = "Jadwal",
                     icon = Icons.Rounded.CalendarMonth,
-                    color = Color(0xFFBB50EE),
+                    color = Purple500,
                     route = menuButtonHandler.getOrNull(0) ?: {},
                 ),
                 DashboardMenu(
                     title = "Presensi",
                     icon = Icons.Rounded.EditCalendar,
-                    color = Color(0xFF1EB193),
+                    color = Green500,
                     route = menuButtonHandler.getOrNull(1) ?: {},
                 ),
                 DashboardMenu(
