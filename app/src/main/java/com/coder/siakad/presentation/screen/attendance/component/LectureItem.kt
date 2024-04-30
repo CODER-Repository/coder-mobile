@@ -52,7 +52,7 @@ fun LectureItem(
         elevation = CardDefaults.cardElevation(2.dp),
         modifier = modifier
     ) {
-        Column {
+        Column() {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -137,7 +137,7 @@ fun LectureItem(
                 )
             }
             CustomButton(
-                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp),
+                modifier = modifier.padding(start = 16.dp),
                 varSizeButton = "isWide",
                 varOutline = "",
                 text = {

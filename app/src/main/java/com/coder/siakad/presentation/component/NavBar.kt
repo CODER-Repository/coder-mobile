@@ -1,5 +1,6 @@
 package com.coder.siakad.presentation.component
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,12 +20,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CalendarViewMonth
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
@@ -33,6 +36,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,6 +58,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.coder.siakad.R
 import com.coder.siakad.presentation.navigation.Screen
+import com.coder.siakad.presentation.screen.overview.CardTodaySchedule
+import com.coder.siakad.presentation.screen.overview.dummyListCardLecture
 import com.coder.siakad.ui.theme.PrimaryBlue500
 import com.coder.siakad.ui.theme.SiakadTheme
 
@@ -123,6 +131,7 @@ fun BottomBar(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun NavBar(
     navController: NavHostController,
@@ -184,11 +193,24 @@ fun NavBar(
 
         }
         Spacer(modifier = Modifier.width(5.dp))
+        val sheetState = androidx.compose.material3.rememberModalBottomSheetState()
+        var isSheetOpen by rememberSaveable {
+            mutableStateOf(false)
+        }
         NavBarCenterButton(
             icon = ImageVector.vectorResource(id = R.drawable.ic_overview),
             label = "Overview",
-            onClick = {},
+            onClick = { isSheetOpen = true },
         )
+        if (isSheetOpen) {
+            ModalBottomSheet(
+                onDismissRequest = { isSheetOpen = false },
+                sheetState = sheetState,
+                containerColor = MaterialTheme.colorScheme.primaryContainer
+            ) {
+               CardTodaySchedule(cardLecture = dummyListCardLecture, name = "Fika")
+            }
+        }
     }
 }
 
@@ -239,7 +261,7 @@ fun RowScope.NavBarItem(
     }
 }
 */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun NavBarCenterButton(
     icon: ImageVector,
@@ -281,16 +303,6 @@ fun NavBarCenterButton(
     }
 }
 
-//@Preview
-//@Composable
-//fun NavigationBarPreview() {
-//    SiakadTheme {
-//        NavBar(
-//            navController = rememberNavController(),
-//            navigationItems =
-//        )
-//    }
-//}
 @Preview
 @Composable
 fun NavBarCenterButtonPreview() {
