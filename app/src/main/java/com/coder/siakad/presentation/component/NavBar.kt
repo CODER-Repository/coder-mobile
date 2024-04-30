@@ -208,7 +208,7 @@ fun NavBar(
                 sheetState = sheetState,
                 containerColor = MaterialTheme.colorScheme.primaryContainer
             ) {
-               CardTodaySchedule(cardLecture = dummyListCardLecture, name = "Fika")
+               CardTodaySchedule(cardLecture = dummyListCardLecture, name = "Fika", navigateToSchedule = {})
             }
         }
     }
