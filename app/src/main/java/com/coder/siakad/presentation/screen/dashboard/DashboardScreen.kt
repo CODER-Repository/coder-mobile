@@ -329,7 +329,7 @@ fun DashboardScreen(
                     route = menuButtonHandler.getOrNull(1) ?: {},
                 ),
                 DashboardMenu(
-                    title = "Nilai",
+                    title = "KRS",
                     icon = Icons.Rounded.FileCopy,
                     color = PrimaryYellow500,
                     route = menuButtonHandler.getOrNull(2) ?: {},
