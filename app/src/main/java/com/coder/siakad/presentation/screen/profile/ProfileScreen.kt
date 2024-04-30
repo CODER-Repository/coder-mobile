@@ -63,7 +63,7 @@ fun ProfileScreen(
             ) {
                 ProfileHeader(
                     username = "Rafika",
-                    imageUrl = "iconUrl",
+                    imageUrl = "https://i.pinimg.com/736x/bc/20/94/bc20948f3bccfd926b41688b38b3d9c9.jpg",
                     nim = "3012110023",
                 )
                 ProfileCard(
