@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.coder.siakad.presentation.component.BottomBar
 import com.coder.siakad.presentation.component.NavBar
 import com.coder.siakad.presentation.navigation.Screen
+import com.coder.siakad.presentation.screen.MaintenanceScreen
 import com.coder.siakad.presentation.screen.academicFees.AcademicFeesScreen
 import com.coder.siakad.presentation.screen.attendance.AttendanceScreen
 import com.coder.siakad.presentation.screen.dashboard.DashboardScreen
@@ -123,6 +124,9 @@ fun SiakadApp(
             }
             composable(Screen.KRS.route){
                 KrsScreen(title = "KRS")
+            }
+            composable(Screen.Maintenance.route){
+                MaintenanceScreen()
             }
         }
     }

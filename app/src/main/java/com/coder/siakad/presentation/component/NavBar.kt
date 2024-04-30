@@ -157,13 +157,13 @@ fun NavBar(
                     icon = ImageVector.vectorResource(id = R.drawable.ic_task),
                     label = "Tugas",
 //                    selected = false,
-                    screen = Screen.AcademicFees
+                    screen = Screen.Maintenance
                 ),
                 NavBarItemData(
                     icon = ImageVector.vectorResource(id = R.drawable.ic_notification),
                     label = "Notifikasi",
 //                    selected = false,
-                    screen = Screen.AcademicFees
+                    screen = Screen.Maintenance
                 ),
                 NavBarItemData(
                     icon = ImageVector.vectorResource(id = R.drawable.ic_profile),
