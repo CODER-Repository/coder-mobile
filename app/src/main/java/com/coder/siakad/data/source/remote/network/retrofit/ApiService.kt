@@ -1,9 +1,8 @@
 package com.coder.siakad.data.source.remote.network.retrofit
 
 import com.coder.siakad.data.source.remote.network.request.auth.LoginRequest
-import com.coder.siakad.data.source.remote.network.response.DashboardResponse
-import com.coder.siakad.data.source.remote.network.response.InvalidResponse
-import com.coder.siakad.data.source.remote.network.response.ScheduleResponse
+import com.coder.siakad.data.source.remote.network.response.dashboard.DashboardResponse
+import com.coder.siakad.data.source.remote.network.response.schedule.ScheduleResponse
 import com.coder.siakad.data.source.remote.network.response.auth.LoginSuccessResponse
 import retrofit2.http.Body
 import retrofit2.http.GET

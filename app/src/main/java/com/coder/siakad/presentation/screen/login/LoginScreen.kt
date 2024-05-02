@@ -235,7 +235,7 @@ fun LoginScreen(
 
             Button(
                 onClick = {
-                    navigateToDashboard()
+//                    navigateToDashboard()
 //                    if (email == "" || password == "") {
 //                        scope.launch {
 //                            snackbarHostState.showSnackbar(
@@ -250,6 +250,9 @@ fun LoginScreen(
 ////                        loginViewModel.login(email = loginRequest.email)
 ////                        Log.e("DEBUG ERROR", "$loginRequest")
 //                    }
+                    if (email == "" || password == "") {
+                        navigateToDashboard()
+                    }
                 },
                 modifier = Modifier
                     .padding(top = 8.dp)
@@ -292,7 +295,7 @@ fun LoginScreen(
 
             Button(
                 onClick = {
-                          navigateToDashboard()
+                    navigateToDashboard()
 //                    if (email == "" || password == "") {
 //                        scope.launch {
 //                            snackbarHostState.showSnackbar(

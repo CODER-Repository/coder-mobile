@@ -62,7 +62,8 @@ class NetworkModule {
     fun provideAuthInterceptor(context: Context): Interceptor {
         return Interceptor {chain ->
             val req = chain.request()
-            val token = getTokenFromContext(context)
+//            val token = getTokenFromContext(context)
+            val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4NmQ5OGE2Yy1kNTViLTQyMWUtOTA3NC0xZWI0OTFjZGMyN2UiLCJlbWFpbCI6ImpvaG5kb2VAc3R1ZGVudC5hYy5pZCIsInJvbGUiOiJTdHVkZW50Iiwicm9sZUlkIjoiU1REIiwiaWF0IjoxNzA5NDQzODYzLCJleHAiOjE3MDk0NDc0NjN9.F4qmKxjBLDD1agvfgoEZgWB6WteKvQ-6_qDbRgbaJ6I"
                 val requestHeaders = req.newBuilder()
                     .addHeader("Authorization", "Bearer $token")
                     .addHeader("Content-type", "application/json")
