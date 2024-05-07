@@ -41,13 +41,16 @@ import com.google.accompanist.pager.HorizontalPagerIndicator
 @ExperimentalMaterial3Api
 @Composable
 fun AcademicFeesScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateBack: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopBar(
                 title = "Biaya Akademik",
-                modifier = modifier
+                modifier = modifier,
+                navigateBack = navigateBack,
+                backButton = true
             )
         },
     ) { paddingValues ->
@@ -138,6 +141,6 @@ fun InformationSlider(
 @Composable
 private fun AcademicFeesPreview() {
     SiakadTheme {
-        AcademicFeesScreen()
+        AcademicFeesScreen(navigateBack = {})
     }
 }
