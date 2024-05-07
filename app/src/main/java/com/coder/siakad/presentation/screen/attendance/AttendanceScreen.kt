@@ -33,13 +33,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun AttendanceScreen(
     navigateToPresensiForm: () -> Unit,
+    navigateBack: () -> Unit
 ) {
     val attendanceTitles = listOf("Hari Ini", "Daftar Kelas")
     val tabPagerState = rememberPagerState { attendanceTitles.size }
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
-            TopBar(title = "Presensi")
+            TopBar(title = "Presensi", navigateBack = navigateBack, backButton = true)
         }
     ) { contentPadding ->
         Column(
