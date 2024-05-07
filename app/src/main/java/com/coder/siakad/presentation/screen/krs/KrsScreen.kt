@@ -53,14 +53,17 @@ import com.coder.siakad.ui.theme.TextDisable
 @Composable
 fun KrsScreen(
     modifier: Modifier = Modifier,
-    title: String
+    title: String,
+    navigateBack: () -> Unit
 ) {
     // TopBar
     Scaffold(
         topBar = {
             TopBar(
                 title = title,
-                modifier = modifier
+                modifier = modifier,
+                backButton = true,
+                navigateBack = navigateBack
             )
         },
     ) { paddingValues ->
@@ -190,6 +193,7 @@ fun KrsScreenPreview() {
         KrsScreen(
             modifier = Modifier,
             title = "KRS",
+            navigateBack = {}
         )
     }
 }
