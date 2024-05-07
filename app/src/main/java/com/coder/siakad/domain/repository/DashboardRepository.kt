@@ -5,5 +5,5 @@ import com.coder.siakad.data.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface DashboardRepository {
-    suspend fun dashhboard(): Flow<Resource<DashboardResponse>>
+    suspend fun dashboard(): Flow<Resource<DashboardResponse>>
 }

@@ -23,7 +23,7 @@ data class DashboardData(
 	val currentSemester: String,
 
 	@field:SerializedName("current_gpa")
-	val currentGpa: Float,
+	val currentGpa: Float = 3.2f,
 
 	@field:SerializedName("total_credit_course_taken")
 	val totalCreditCourseTaken: Int

@@ -15,7 +15,7 @@ import java.lang.Exception
 class DashboardRepositoryImpl(
     private val api: ApiService,
 ) : DashboardRepository {
-    fun handleError(exception: Exception): Resource<DashboardResponse> {
+    private fun handleError(exception: Exception): Resource<DashboardResponse> {
         return when (exception) {
             is HttpException -> Resource.Error(
                 message = exception.localizedMessage ?: "Unkown Error"
@@ -29,7 +29,7 @@ class DashboardRepositoryImpl(
         }
     }
 
-    override suspend fun dashhboard(): Flow<Resource<DashboardResponse>> =
+    override suspend fun dashboard(): Flow<Resource<DashboardResponse>> =
         flow {
             try {
                 val response = api.getDashboard()

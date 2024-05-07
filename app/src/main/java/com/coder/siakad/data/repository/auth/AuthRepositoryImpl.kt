@@ -20,7 +20,7 @@ class AuthRepositoryImpl(
 //    private val pref: UserPreference
 ) : AuthRepository {
     //:Exception = generic
-    fun handleError(exception: Exception): Resource<LoginSuccessResponse> {
+    private fun handleError(exception: Exception): Resource<LoginSuccessResponse> {
         return when (exception) {
             is HttpException -> Resource.Error(
                 message = exception.localizedMessage ?: "Unknown Error"

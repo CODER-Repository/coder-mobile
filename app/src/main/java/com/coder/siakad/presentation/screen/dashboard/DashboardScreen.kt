@@ -1,5 +1,7 @@
 package com.coder.siakad.presentation.screen.dashboard
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -53,20 +55,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
+import com.coder.siakad.data.source.remote.network.response.dashboard.DashboardResponse
+import com.coder.siakad.data.util.Resource
 import com.coder.siakad.presentation.component.header.TopBarIconButton
 import com.coder.siakad.presentation.component.NavBar
 import com.coder.siakad.presentation.screen.dashboard.component.DashboardInfo
@@ -84,10 +93,35 @@ fun DashboardScreen(
     onLogout: () -> Unit,
     menuButtonHandler: List<() -> Unit>,
     navigateToProfile: () -> Unit,
+    dashboardViewModel: DashboardViewModel = hiltViewModel()
 ) {
 
     var dropdownExpanded by remember { mutableStateOf(false) }
+//    var ipk by rememberSaveable { mutableStateOf("") }
+//    var sks by rememberSaveable { mutableStateOf("") }
+//    var grade by rememberSaveable { mutableStateOf("") }
+    var dashboardInfo: DashboardResponse? by remember { mutableStateOf(null) }
+    var isLoading by rememberSaveable { mutableStateOf<Boolean>(false) }
 
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    dashboardViewModel.uiDashboardInfoState.collectAsStateWithLifecycle().value.let { uiState->
+        when(uiState){
+            is Resource.Loading ->{
+                isLoading = true
+            }
+            is Resource.Success -> {
+                dashboardInfo = uiState.data
+                isLoading = false
+                Log.e("dashboard", dashboardInfo?.data?.currentGpa.toString())
+            }
+            is Resource.Error -> {
+                Toast.makeText(context, uiState.message, Toast.LENGTH_SHORT).show()
+                isLoading = false
+            }
+        }
+    }
     Scaffold(
         topBar = {
             Column(
@@ -273,9 +307,9 @@ fun DashboardScreen(
                     ) {
                         Row(Modifier.height(IntrinsicSize.Min)) {
                             DashboardInfo(
-                                title = "IPK Kumulatif",
+                                title = "IPK",
                                 icon = Icons.AutoMirrored.Outlined.InsertDriveFile,
-                                value = "3.90",
+                                value = dashboardInfo?.data?.currentGpa.toString() ?: "3",
                                 color = Green500,
                                 modifier = Modifier.weight(1f)
                             )
@@ -289,7 +323,7 @@ fun DashboardScreen(
                             DashboardInfo(
                                 title = "Total SKS Diambil",
                                 icon = Icons.Default.FormatListNumbered,
-                                value = "24",
+                                value = dashboardInfo?.data?.totalCreditCourseTaken.toString(),
                                 color = PrimaryYellow500,
                                 modifier = Modifier.weight(1f)
                             )
@@ -303,7 +337,7 @@ fun DashboardScreen(
                             DashboardInfo(
                                 title = "Semester",
                                 icon = Icons.Outlined.School,
-                                value = "2",
+                                value = dashboardInfo?.data?.currentSemester.toString(),
                                 modifier = Modifier.weight(1f)
                             )
                             Spacer(
@@ -317,7 +351,7 @@ fun DashboardScreen(
                                 title = "Tagihan Terkini",
                                 icon = Icons.Default.Payments,
                                 color = MaterialTheme.colorScheme.error,
-                                value = "Rp.8.500.000",
+                                value = dashboardInfo?.data?.unpaidFees.toString(),
                                 modifier = Modifier.weight(1f)
                             )
                         }
