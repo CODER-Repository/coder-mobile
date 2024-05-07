@@ -57,7 +57,9 @@ fun PresensiFormScreen(
     Scaffold(
         topBar = {
             TopBar(
-                title = stringResource(id = R.string.form_presensi)
+                title = stringResource(id = R.string.form_presensi),
+                navigateBack = navigateBack,
+                backButton = true
 
             )
         }
