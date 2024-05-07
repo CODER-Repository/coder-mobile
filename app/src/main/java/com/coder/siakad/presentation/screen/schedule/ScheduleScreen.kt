@@ -35,7 +35,8 @@ import com.coder.siakad.ui.theme.SiakadTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScheduleScreen(
-    scheduleViewModel: ScheduleViewModel = hiltViewModel()
+    scheduleViewModel: ScheduleViewModel = hiltViewModel(),
+    navigateBack: () -> Unit
 ) {
     var schedule: ScheduleResponse? by remember { mutableStateOf(null) }
     var isLoading by rememberSaveable { mutableStateOf<Boolean>(false) }
@@ -63,7 +64,9 @@ fun ScheduleScreen(
     Scaffold(
         topBar = {
             TopBar(
-                title = stringResource(id = R.string.schedule)
+                title = stringResource(id = R.string.schedule),
+                navigateBack = navigateBack,
+                backButton = true
             )
         }
     ) { paddingValues ->
@@ -129,7 +132,7 @@ fun getDayName(index: Int): String {
 @Composable
 fun SchedulePrev() {
     SiakadTheme {
-        ScheduleScreen()
+        ScheduleScreen(navigateBack = {})
     }
 }
 

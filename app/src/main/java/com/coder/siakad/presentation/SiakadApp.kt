@@ -82,7 +82,7 @@ fun SiakadApp(
                     menuButtonHandler = listOf(
                         { navController.navigate(Screen.Schedule.route) },
                         { navController.navigate(Screen.Attendance.route) },
-                        { navController.navigate(Screen.KRS.route)},
+                        { navController.navigate(Screen.KRS.route) },
                         { navController.navigate(Screen.AcademicFees.route) },
                         {}
                     ),
@@ -90,10 +90,15 @@ fun SiakadApp(
                 )
             }
             composable(Screen.Schedule.route) {
-                ScheduleScreen()
+                ScheduleScreen(navigateBack = {
+                    navController.navigateUp()
+                })
             }
             composable(Screen.Attendance.route) {
-                AttendanceScreen(navigateToPresensiForm = {navController.navigate(Screen.FormPresensi.route)})
+                AttendanceScreen(navigateToPresensiForm = { navController.navigate(Screen.FormPresensi.route) },
+                    navigateBack = {
+                        navController.navigateUp()
+                    })
             }
             composable(Screen.FormPresensi.route) {
                 PresensiFormScreen(
@@ -105,7 +110,9 @@ fun SiakadApp(
                 )
             }
             composable(Screen.AcademicFees.route) {
-                AcademicFeesScreen()
+                AcademicFeesScreen(navigateBack = {
+                    navController.navigateUp()
+                })
             }
             composable(Screen.Profile.route) {
                 ProfileScreen(
@@ -122,10 +129,12 @@ fun SiakadApp(
                     }
                 )
             }
-            composable(Screen.KRS.route){
-                KrsScreen(title = "KRS")
+            composable(Screen.KRS.route) {
+                KrsScreen(title = "KRS", navigateBack = {
+                    navController.navigateUp()
+                })
             }
-            composable(Screen.Maintenance.route){
+            composable(Screen.Maintenance.route) {
                 MaintenanceScreen()
             }
         }
