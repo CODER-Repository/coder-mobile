@@ -15,15 +15,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.coder.siakad.presentation.screen.schedule.Course
-import com.coder.siakad.presentation.screen.schedule.dummySchedules
+import com.coder.siakad.data.source.remote.network.response.schedule.DayItem
 import com.coder.siakad.ui.theme.SiakadTheme
 
 /*TODO: change dummy Course*/
 @Composable
 fun DayItem(
     dayName: String,
-    listCourse: List<Course>,
+    listCourse: List<DayItem>,
     colorPrimary: Color,
     colorOnPrimary: Color,
     modifier: Modifier = Modifier
@@ -48,15 +47,16 @@ fun DayItem(
             listCourse.forEach() {
                 CourseItem(
                     name = it.courseName,
-                    idClass = it.idClass,
-                    time = it.time,
-                    room = it.room
+                    idClass = it.courseId,
+                    time = "${it.timeStart} - ${it.timeEnd}",
+                    room = it.courseRoom
                 )
             }
         }
     }
 }
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun DayItemPrev() {
@@ -69,3 +69,4 @@ fun DayItemPrev() {
         )
     }
 }
+ */

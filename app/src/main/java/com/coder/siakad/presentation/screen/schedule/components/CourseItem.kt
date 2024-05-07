@@ -2,6 +2,7 @@ package com.coder.siakad.presentation.screen.schedule.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessTimeFilled
@@ -33,7 +34,10 @@ fun CourseItem(
     ) {
         Text(
             text = name,
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold, color = TextPrimary),
+            style = MaterialTheme.typography.titleMedium.copy(
+                fontWeight = FontWeight.SemiBold,
+                color = TextPrimary
+            ),
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -42,7 +46,10 @@ fun CourseItem(
                 contentDescription = null,
                 modifier = Modifier.padding(end = 10.dp)
             )
-            Text(text = idClass, style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary))
+            Text(
+                text = idClass,
+                style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary)
+            )
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
@@ -50,7 +57,11 @@ fun CourseItem(
                 contentDescription = null,
                 modifier = Modifier.padding(end = 10.dp)
             )
-            Text(text = time, style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary))
+            Text(
+                text = time,
+                style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary),
+                modifier = Modifier.padding(end = 5.dp)
+            )
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
@@ -58,7 +69,10 @@ fun CourseItem(
                 contentDescription = null,
                 modifier = Modifier.padding(end = 10.dp)
             )
-            Text(text = room, style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary))
+            Text(
+                text = room,
+                style = MaterialTheme.typography.labelMedium.copy(color = TextSecondary)
+            )
         }
     }
 }
@@ -67,7 +81,12 @@ fun CourseItem(
 @Composable
 fun CoursePrev() {
     SiakadTheme {
-        CourseItem(name = "Matematika Diskret 2", idClass = "IF-2B", time = "07:30 - 09:10", room = "CM-202" )
+        CourseItem(
+            name = "Matematika Diskret 2",
+            idClass = "IF-2B",
+            time = "07:30",
+            room = "CM-202"
+        )
     }
 }
 
